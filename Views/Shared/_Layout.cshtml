@@ -1,0 +1,184 @@
+﻿@using Horizontal.Models;
+@using Horizontal.Controllers;
+@using Horizontal.Models.Navigation;
+@using Horizontal.Services;
+@using Microsoft.AspNetCore.Html;
+@using System.Text;
+@using System.Web;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject ICustomUrlProviderService customUrlProviderService
+
+@model BaseModel
+
+@functions {
+    /// <summary>
+    /// Recursive function for constructing the left side navbar
+    /// </summary>
+    public void AppendCategoryNavigationRec(CategoryNavigationModel categoryNavigationModel, StringBuilder sb)
+    {
+        if (!(categoryNavigationModel.Subcategorie?.Any() ?? false) && !(categoryNavigationModel.Articles?.Any() ?? false))
+            return;
+
+        sb.AppendLine("<ul class=\"side-navbar__category_collapsed\">");
+
+        foreach (var subcategory in categoryNavigationModel?.Subcategorie ?? Enumerable.Empty<CategoryNavigationModel>())
+        {
+            var subRecordsCount = subcategory.Subcategorie?.Count ?? 0 + subcategory.Articles?.Count ?? 0;
+
+            sb.AppendLine($"<li class=\"side-navbar__category\" data-categoryid=\"{subcategory.CategoryId}\">");
+            if (subRecordsCount > 0)
+                sb.Append("<i class=\"fa-solid fa-chevron-right\" onClick></i>");
+            sb.Append($"<a href=\"{customUrlProviderService.GetCustomUrl("Category", "Category", (key: "categoryId", value: subcategory.CategoryId.ToString()))}\">{subcategory.Name}");
+            if (subRecordsCount > 0)
+                sb.AppendLine($"<span>{subRecordsCount}</span>");
+            sb.Append("</a>");
+            AppendCategoryNavigationRec(subcategory, sb);
+            sb.AppendLine("</li>");
+        }
+
+        foreach (var article in categoryNavigationModel?.Articles ?? Enumerable.Empty<ArticleNavigationModel>())
+        {
+            sb.AppendLine($"<li data-articleid=\"{article.ArticleId}\">");
+            sb.Append($"<a href=\"{customUrlProviderService.GetCustomUrl("Article", "FullArticle", (key: "articleId", value: article.ArticleId.ToString()))}\">{article.Name}</a>");
+            sb.Append("</li>");
+        }
+
+        sb.AppendLine("</ul>");
+    }
+}
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Horizontal</title>
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="/css/general.css" rel="stylesheet" />
+    <link href="/css/main-page.css" rel="stylesheet" />
+    @RenderSection("Styles", required: false)
+    <script type="text/javascript" src="/js/sticky-navbar.js"></script>
+    <script type="text/javascript" src="/js/left-navbar.js"></script>
+    @RenderSection("Scripts", required: false)
+</head>
+<body onscroll="onScroll()">
+    <header class="main-header">
+        <img class="main-header__img" src="/img/header_2560.webp" srcset="/img/header_2560.webp, /img/header_2560.jpg" alt="kopcovitá krajina zalitá sluncem">
+        <div class="top-navbar-container">
+            <div class="top-navbar">
+                <nav class="navbar__left">
+                    <ul>
+                        <li id="left-navbar-button">
+                            <i class="fa-solid fa-bars fa-lg left-navbar-button_on" onclick="toggleLeftNavbar()"></i>
+                        </li>
+                        <li>
+                            <a href="@customUrlProviderService.GetCustomUrl("Home", "Main")">
+                                <i class="fa-solid fa-house fa-lg"></i>
+                            </a>
+                        </li>
+                        @*<li >
+                            <a>
+                                <i class="fa-brands fa-instagram fa-lg"></i>
+                            </a>
+                        </li>*@
+                    </ul>
+                </nav>
+
+                <nav class="navbar__main-nav">
+                    <ul>
+                        @foreach (var tag in Model.TopNavbarTags ?? Enumerable.Empty<string>())
+                        {
+                            <li>
+                                @if (tag != Model.TopNavbarTags?.First())
+                                {
+                                    <span class="navbar__divider_vertical"></span>
+                                }
+                                <a href="@customUrlProviderService.GetCustomUrl("Category", "Tag", (key: "tagName", value: tag))">@tag</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+
+                <ul class="navbar__right">
+                    @*<li>
+                        <i class="fa-solid fa-moon fa-lg clickable"></i>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-sun fa-lg clickable"></i>
+                    </li>*@
+                </ul>
+            </div>
+            <hr />
+        </div>
+        <div class="top-navbar-container-placeholder"></div>
+    </header>
+    <main>
+        <div>
+            @RenderBody()
+        </div>
+        <aside class="lef-navbar-shadow">
+            <nav class="side-navbar">
+                <ul>
+                    @{
+                        var sb = new StringBuilder();
+                        foreach (var topCategory in Model?.CategoriesNavigation ?? Enumerable.Empty<CategoryNavigationModel>())
+                        {
+                            var subRecordsCount = (topCategory.Subcategorie?.Count ?? 0) + (topCategory.Articles?.Count ?? 0);
+
+                            sb.AppendLine($"<li class=\"side-navbar__category side-navbar__category_top\" data-categoryid=\"{topCategory.CategoryId}\">");
+                            if (subRecordsCount > 0)
+                                sb.Append("<i class=\"fa-solid fa-chevron-right\"></i>");
+                            sb.Append($"<a href=\"{customUrlProviderService.GetCustomUrl("Category", "Category", (key: "categoryId", value: topCategory.CategoryId.ToString()))}\">{topCategory.Name}");
+                            if (subRecordsCount > 0)
+                                sb.AppendLine($"<span>{subRecordsCount}</span>");
+                            sb.Append("</a>");
+                            AppendCategoryNavigationRec(topCategory, sb);
+                            sb.Append("</li>");
+                        }
+                    }
+                    @Html.Raw(sb.ToString())
+                </ul>
+            </nav>
+        </aside>
+    </main>
+    <footer>
+        <div class="footer-top">
+            @*<section>
+                <h2>Odběr novinek</h2>
+                <form asp-controller="Home" asp-action="SignupForNewsletter" id="newsletter-form">
+                    <input type="text" name="email" placeholder="Váš Email">
+                </form>
+                <button class="button" type="submit" value="Submit" form="newsletter-form">Přihlásit k odběru</button>
+                <div class="clearfix"></div>
+            </section>
+
+            <hr>*@
+
+            <ul class="footer-links">
+                <li>
+                    <a href="@customUrlProviderService.GetCustomUrl("Home", "Main")">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Domů</span>
+                    </a>
+                </li>
+                @*<li>
+                    <a href="@customUrlProviderService.GetCustomUrl("Contact")">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Kontakt</span>
+                    </a>
+                </li>*@
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-information">
+                <p>
+                    <small>Veškeré informace obsažené na tomto webu jsou bez záruky.</small>
+                </p>
+                <p>
+                    <small>&copy; @DateTime.Now.Year - Obsah tohoto webu je chráněn autorským právem.</small>
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

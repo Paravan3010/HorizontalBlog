@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+@using Horizontal.Models.Admin
+
+@model AdminCategoryModel
+@{
+    Layout = "/Views/Admin/_AdminLayout.cshtml";
+}
+
+@section AdminScripts {
+        <script type="text/javascript" src="/js/admin-forms.js"></script>
+}
+
+<h3>Detail a editace kategorie</h3>
+
+<form method="post" action="edit">
+    <fieldset>
+        <input type="hidden" name="Id" value="@Model.Id">
+
+        <div class="form-group">
+            <label for="Name">Název</label>
+            <input name="Name" class="form-control" value="@Model.Name" />
+        </div>
+        <div class="form-group">
+            <label for="ParentCategoryName">Jméno nadřazené kategorie</label>
+            <input name="ParentCategoryName" class="form-control" value="@Model.ParentCategoryName" />
+        </div>
+        <div class="form-group">
+            <label for="ChildCategoryNames">Názvy podřízených kategorií</label>
+            <textarea name="ChildCategoryNames" class="form-control" rows="3" placeholder="Kategorie 1, Kategorie 2, Kategorie 3">@Model.ChildCategoryNames</textarea>
+        </div>
+        <div class="form-group">
+            <label for="ArticleShortNames">Názvy článků kategorie</label>
+            <textarea name="ArticleShortNames" class="form-control" rows="6" placeholder="Kategorie 1, Kategorie 2, Kategorie 3">@Model.ArticleShortNames</textarea>
+        </div>
+        <div class="form-group">
+            <label for="CustomUrl">Vlastní URL</label>
+            <input name="CustomUrl" class="form-control" value="@Model.CustomUrl" />
+        </div>
+
+        <div class="form-group">
+            <input name="IsPublished" class="form-check-input" type="checkbox" value="@(Model.IsPublished ? "true" : "false")" @(Model.IsPublished ? "checked" : "") />
+            <label for="IsPublished" class="form-check-label">Publikováno</label>
+        </div>
+    </fieldset>
+
+    <button type="submit" class="btn btn-success mb-2">Uložit změny</button>
+</form>

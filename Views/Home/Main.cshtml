@@ -1,0 +1,21 @@
+﻿@model MainModel
+
+@using Horizontal.Models;
+
+@section Styles {
+    @if (Model.Articles.Count > 0)
+    {
+        <link href="/css/big-article-preview.css" rel="stylesheet" />
+    }
+}
+
+<section>
+    @foreach (var article in Model.Articles)
+    {
+        if (article != Model.Articles.First())
+        {
+            <hr />
+        }
+        @await Html.PartialAsync("~/Views/Article/BigArticlePreview.cshtml", article)
+    }
+</section>

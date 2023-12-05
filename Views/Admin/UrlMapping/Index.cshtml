@@ -1,0 +1,70 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+@using Horizontal.Models.Admin
+
+@model IList<UrlMappingModel>
+@{
+    Layout = "/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="container" style="margin:0;padding:0;">
+    <div class="row">
+        <h1 class="col" style="width:350px; font-size:2rem">
+            Mapování vlastních URL adres
+        </h1>
+        <a class="btn btn-success col" href="url-mapping/create" style="margin-bottom:10px;max-width:150px">
+            Nové mapování
+        </a>
+    </div>
+</div>
+
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th style="text-align:center; width:75px">Aktivní</th>
+            <th>Původní URL</th>
+            <th>Vlastní URL</th>
+            <th style="width:200px">Akce</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.Count() > 0)
+        {
+            @foreach (var mapping in Model)
+            {
+                <tr>
+                    <td style="text-align:center">
+                        @if (mapping.IsActive)
+                        {
+                            <i class="fa-solid fa-square-check fa-2xl" style="color: #16d416; vertical-align: middle; "></i>
+                        }
+                        else
+                        {
+                            <i class="fa-solid fa-square-xmark fa-2xl" style="color: #df1111;"></i>
+                        }
+                    </td>
+                    <td>
+                        @mapping.OriginalUrl
+                    </td>
+                    <td>
+                        @mapping.NewUrl
+                    </td>
+
+                    <td>
+                        <a class="btn btn-warning btn-sm" href="url-mapping/detail?customUrlId=@mapping.Id.ToString()">
+                            Detail a editace
+                        </a>
+                        <a class="btn btn-danger btn-sm" href="url-mapping/delete?customUrlId=@mapping.Id.ToString()">
+                            Smazat
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">Žádná mapování</td>
+            </tr>
+        }
+    </tbody>
+</table>

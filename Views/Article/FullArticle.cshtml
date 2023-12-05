@@ -1,0 +1,84 @@
+﻿@using System.IO
+@using Horizontal.Models;
+@using Horizontal.Services;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment _env
+@inject ICustomUrlProviderService customUrlProviderService
+
+@model ArticleModel
+@{
+    Layout = "_Layout";
+}
+
+@section Styles {
+    <link href="/css/article.css" rel="stylesheet" />
+}
+<article class="full-article">
+    <h2>@Model.Title</h2>
+
+    @Html.Raw(System.IO.File.ReadAllText(System.IO.Path.Combine(_env.WebRootPath, Model.ArticleHtmlPath)))
+
+    <div class="full-article__footing">
+        <div class="full-article__footing-dates">
+            <span class="full-article__footing-published">Publikováno: <time datetime="@Model.Published.ToString("yyyy-MM-dd")">@Model.Published.ToString("dd. MM. yyyy")</time></span>
+            @if ((Model.LastUpdated - Model.Published).TotalDays > 1)
+            {
+                <span class="full-article__footing-actualized">Aktualizováno: <time datetime="@Model.LastUpdated.ToString("yyyy-MM-dd")">@Model.LastUpdated.ToString("dd. MM. yyyy")</time></span>
+            }
+        </div>
+        @* @if (Model.GalleryExists)
+        {
+        <a class="full-article__gallery-link">
+        Galerie
+        </a>
+        }*@
+        @if (Model.Tags.Any())
+        {
+            <div class="tags">
+                @foreach (var tag in Model.Tags)
+                {
+                    <a href="@customUrlProviderService.GetCustomUrl("Category", "Tag", (key: "tagName", value: tag))">
+                        <em>@tag</em>
+                    </a>
+                }
+            </div>
+        }
+
+        @if (Model.PreviousArticleId != null || Model.NextArticleId != null)
+        {
+            <section class="full-article__footing-nav">
+                @if (Model.PreviousArticleId != null)
+                {
+                    <a class="post__end-nav-previous" 
+                       href="@customUrlProviderService.GetCustomUrl("Article", "FullArticle", (key: "articleId", value: Model.PreviousArticleId.ToString()))">
+                        <div class="post__end-nav-circle">
+                            <img src="/icons/arrow-left-90.png" alt="arrow left">
+                        </div>
+                        <em>Předchozí</em>
+                        <strong>@Model.PreviousArticleShortName</strong>
+                        <div class="clearfix"></div>
+                    </a>
+                }
+                @if (Model.NextArticleId != null)
+                {
+                    <a class="post__end-nav-next"
+                       href="@customUrlProviderService.GetCustomUrl("Article", "FullArticle", (key: "articleId", value: Model.NextArticleId.ToString()))">
+                        <div class="post__end-nav-circle">
+                            <img src="/icons/arrow-right-90.png" alt="arrow right" width="16">
+                        </div>                        
+                        <em>Následující</em>
+                        <strong>@Model.NextArticleShortName</strong>
+                        <div class="clearfix"></div>
+                    </a>         
+                    <div class="clearfix"></div>           
+                }
+            </section>
+        }
+    </div>
+</article>
+
+@* Passing to JS *@
+<script>
+    var articleId = @Model.Id;
+</script>

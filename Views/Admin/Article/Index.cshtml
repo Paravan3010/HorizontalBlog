@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+@using Horizontal.Models.Admin
+
+@model IList<ArticlePreviewModel>
+@{
+    Layout = "/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="container" style="margin:0;padding:0;">
+    <div class="row">
+        <h1 class="col" style="width:150px; font-size:2rem">
+            Články
+        </h1>
+        <a class="btn btn-success col" href="Article/Create" style="margin-bottom:10px;max-width:125px">
+            Nový článek
+        </a>
+    </div>
+</div>
+
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Krátký titulek</th>
+            <th style="text-align:center; width:140px">Vypublikováno</th>
+            <th>URL</th>
+            <th style="width:200px">Akce</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.Count() > 0)
+        {
+            @foreach (var article in Model)
+            {
+                <tr>
+                    <td>
+                        @article.ShortTitle
+                    </td>
+                    <td style="text-align:center">
+                        @if (article.IsPublished)
+                        {
+                            <i class="fa-solid fa-square-check fa-2xl" style="color: #16d416; vertical-align: middle; "></i>
+                        }
+                        else
+                        {
+                            <i class="fa-solid fa-square-xmark fa-2xl" style="color: #df1111;"></i>
+                        }
+                    </td>
+                    <td>
+                        @article.CustomUrl
+                    </td>
+                    <td>
+                        <a class="btn btn-warning btn-sm" href="Article/Detail?articleId=@article.Id.ToString()">
+                            Detail a editace
+                        </a>
+                        <a class="btn btn-danger btn-sm" href="Article/Delete?articleId=@article.Id.ToString()">
+                            Smazat
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">Žádné články</td>
+            </tr>
+        }
+    </tbody>
+</table>

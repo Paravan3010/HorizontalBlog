@@ -1,0 +1,80 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Montserrat); /* headings */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+html, body {
+    max-width: 2560px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+@media (hover: hover) {
+    a:hover, .clickable:hover, a:hover strong {
+        color: #f13544 !important;
+        cursor: pointer !important;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+.clearfix {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+body {
+    margin: 0px;
+    font-family: 'Open Sans';
+}
+
+    body > main {
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+.button {
+    width: 200px;
+    height: 39px;
+    border-radius: 3px;
+    background-color: rgba(72,72,72,0);
+    border: 1px solid #0a0a0a;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    cursor: pointer;
+    font-size: 0.875em;
+    text-transform: uppercase;
+    color: #0a0a0a;
+    font-family: "Montserrat";
+    font-weight: 600;
+}
+
+@media (hover: hover) {
+    button:hover {
+        background-color: #f0e6e4;
+        color: black;
+    }
+}
+
+button:focus {
+    background-color: #f0e6e4;
+    color: black;
+    outline: 0;
+}
+
+hr {
+    height: 1px;
+    background-color: #eeeeee;
+    border: 0px;
+    margin-top: 3px;
+}

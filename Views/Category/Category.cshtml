@@ -1,0 +1,36 @@
+﻿@using Horizontal.Models;
+
+@model CategoryModel
+@{
+    Layout = "_Layout";
+}
+
+@section Styles {
+    <link href="/css/category-page.css" rel="stylesheet" />
+    @if (Model.Articles.Count > 0)
+    {
+        <link href="/css/big-article-preview.css" rel="stylesheet" />
+    }
+}
+
+<section class="category">
+    <h2>@Model.CategoryName</h2>
+    @foreach (var article in Model.Articles)
+    {
+        if (article != Model.Articles.First())
+        {
+            <hr />
+        }
+        @await Html.PartialAsync("~/Views/Article/BigArticlePreview.cshtml", article)
+    }
+    @if (Model.Articles.Count == 0)
+    {
+        <p style="text-align: center">Tato kategorie přímo neobsahuje žádné články</p>
+    }
+</section>
+
+@* Passing to JS *@
+<script>
+    if (@Model.CategoryId != null)
+        var categoryId = @Model.CategoryId;
+</script>

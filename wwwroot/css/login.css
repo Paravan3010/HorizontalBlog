@@ -1,0 +1,33 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+.login {
+    margin: 0px;
+    font-family: 'Open Sans';
+}
+
+.text-danger {
+    color: red;
+}
+
+.title {
+    text-transform: uppercase;
+    background-color: #2e2e2e;
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+}
+
+form {
+    padding: 0px 20px;
+}
+
+.button {
+    margin-top: 20px !important;
+}
+
+input {
+    width: 192px;
+    padding: 5px;
+}

@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+@using Horizontal.Models.Admin
+
+@{
+    Layout = "/Views/Admin/_AdminLayout.cshtml";
+}
+
+@section AdminScripts {
+    <script type="text/javascript" src="/js/admin-forms.js"></script>
+}
+
+<div class="container" style="margin:0;padding:0;">
+    <div class="row">
+        <h1 class="col" style="width:150px; font-size:2rem">
+            Obecná nastavení
+        </h1>
+        <a class="btn btn-warning col" href="/admin/general/ActualizeLeftNavBar" style="margin-bottom:10px;max-width:280px">
+            Aktualizovat levé navigační menu
+        </a>
+    </div>
+</div>

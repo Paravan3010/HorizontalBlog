@@ -1,0 +1,52 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    @RenderSection("AdminScripts", required: false)
+</head>
+<body>
+    <header>
+        <div class="bg-info text-white p-2">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <span class="navbar-brand ml-2">HORIZONTAL Administration</span>
+                    </div>
+                    <div class="col-2 text-end">
+                        <a class="btn btn-sm btn-primary" href="/account/logout">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <div class="row p-2">
+            <div class="col-3">
+                <div class="d-grid gap-1">
+                    <a class="btn btn-outline-primary" href="/admin/general" ActiveClass="btn-primary text-white">
+                        Obecná nastavení
+                    </a>
+                    <a class="btn btn-outline-primary" href="/admin/article" ActiveClass="btn-primary text-white">
+                        Články
+                    </a>
+                    <a class="btn btn-outline-primary" href="/admin/category" ActiveClass="btn-primary text-white">
+                        Kategorie
+                    </a>
+                    <a class="btn btn-outline-primary" href="/admin/tag" ActiveClass="btn-primary text-white">
+                        Tagy
+                    </a>
+                    <a class="btn btn-outline-primary" href="/admin/url-mapping" ActiveClass="btn-primary text-white">
+                        Mapování URL
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>

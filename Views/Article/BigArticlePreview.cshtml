@@ -1,0 +1,26 @@
+﻿@using Horizontal.Models;
+@using Horizontal.Services;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject ICustomUrlProviderService customUrlProviderService
+
+@model ArticleModel
+
+<article>
+    <a href="@customUrlProviderService.GetCustomUrl("Article", "FullArticle", (key: "articleId", value: Model.Id.ToString()))">
+        <img src="@Model.PreviewPhotoPath" />
+    </a>
+    <header>
+        <div class="tags">
+            @foreach (var tag in Model.Tags.Take(3))
+            {
+                <a href="@customUrlProviderService.GetCustomUrl("Category", "Tag", (key: "tagName", value: tag))">
+                    <em>@tag</em>
+                </a>
+            }
+        </div>
+        <a href="@customUrlProviderService.GetCustomUrl("Article", "FullArticle", (key: "articleId", value: Model.Id.ToString()))">
+            <h3>@Model.Title</h3>
+        </a>
+        <time datetime="@Model.Published.ToString("yyyy-MM-dd")">@Model.Published.ToString("dd. MM. yyyy")</time>
+    </header>
+</article>
