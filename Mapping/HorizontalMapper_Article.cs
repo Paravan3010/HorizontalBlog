@@ -61,10 +61,12 @@ namespace Horizontal.Mapping
                 PreviousArticleShortName = String.IsNullOrEmpty(domainModel.PreviousArticle?.LongTitle) ?
                                                 domainModel.PreviousArticle?.ShortTitle :
                                                 domainModel.PreviousArticle?.LongTitle,
+                IsPreviousArticlePublished = domainModel.PreviousArticle?.IsPublished ?? false,
                 NextArticleId = domainModel.NextArticle?.Id,
                 NextArticleShortName = String.IsNullOrEmpty(domainModel.NextArticle?.LongTitle) ?
                                             domainModel.NextArticle?.ShortTitle :
-                                            domainModel.NextArticle?.LongTitle
+                                            domainModel.NextArticle?.LongTitle,
+                IsNextArticlePublished = domainModel.NextArticle?.IsPublished ?? false,
             };
         }
 
