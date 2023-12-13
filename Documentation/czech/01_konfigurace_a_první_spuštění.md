@@ -4,7 +4,7 @@ Vytvořte kopii souboru appsettings.Example.json, přejmenujte jej na appsetting
 ## Konfigurace v appsettings.json
 Vyžadovaná konfigurace:
 1) Connection string do databáze v uzlu *ConnectionStrings:MainConnection*. Např.: *Server=**SERVER**;Database=**DATABASE**;Trusted_Connection=True;MultipleActiveResultSets=true;TRUSTSERVERCERTIFICATE=yes;*
-2) Přihlašovací jméno a heslo do admin části webu v uzlech *AdminUser:Login* a *AdminUser:Password*.
+2) Přihlašovací jméno a heslo do admin části webu v uzlech *AdminUser:Login* a *AdminUser:Password*. Heslo musí splňovat defaultní bezpečnostní standardy: musí obsahovat velké písmeno, malé písmeno, číslici a nealfanumerický znak. Zároveň nesmí být kratší, než 6 znaků. Pokud toto nebude splněno, nebude účet při prvním spuštění založen a nebude možné se přihlásit do Admin sekce. Pokus o založení účtu proběhne při každém dalším spuštění. Stačí tedy překonfigurovat heslo a spustit aplikaci znovu.
 
 Volitelná konfigurace:
 1) Naplnění databáze příkladovými testovacími daty v uzlu *FillWithTestData*. Tato příkladová data používají články a obrázky uložené v tomto repozitáři ve složkách wwwroot/articles a wwwroot/img. Testovací záznamy se do DB vloží pouze v případě, že v ní již nejsou uloženy jiné záznamy. Toto nastavení je relevantní pouze pro vývojové prostředí, na produkčním prostředí není zohledněno a testovací data tam nejsou naplněna nikdy.
