@@ -45,10 +45,11 @@
             </div>
         }
 
-        @if (Model.PreviousArticleId != null || Model.NextArticleId != null)
+        @if ((Model.IsPreviousArticlePublished && Model.PreviousArticleId != null) || 
+             (Model.IsNextArticlePublished && Model.NextArticleId != null))
         {
             <section class="full-article__footing-nav">
-                @if (Model.PreviousArticleId != null)
+                @if (Model.IsPreviousArticlePublished && Model.PreviousArticleId != null)
                 {
                     <a class="post__end-nav-previous" 
                        href="@customUrlProviderService.GetCustomUrl("Article", "FullArticle", (key: "articleId", value: Model.PreviousArticleId.ToString()))">
@@ -60,7 +61,7 @@
                         <div class="clearfix"></div>
                     </a>
                 }
-                @if (Model.NextArticleId != null)
+                @if (Model.IsNextArticlePublished && Model.NextArticleId != null)
                 {
                     <a class="post__end-nav-next"
                        href="@customUrlProviderService.GetCustomUrl("Article", "FullArticle", (key: "articleId", value: Model.NextArticleId.ToString()))">

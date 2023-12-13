@@ -293,10 +293,12 @@ namespace Horizontal.Domain.MigrationAndSeed
             // follow-up articles need to be saved separately to prevent circular dependency error
             chineseWall.NextArticle = chineseRailway;
             chineseRailway.NextArticle = indianRailway;
+            schengen.NextArticle = ukVisa;
             context.SaveChanges();
 
             chineseRailway.PreviousArticle = chineseWall;
             indianRailway.PreviousArticle = chineseRailway;
+            ukVisa.PreviousArticle = schengen;
             context.SaveChanges();
         }
 
