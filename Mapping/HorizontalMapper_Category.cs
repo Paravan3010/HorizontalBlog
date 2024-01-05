@@ -3,8 +3,6 @@ using Horizontal.Domain;
 using Horizontal.Models;
 using Horizontal.Services;
 using Horizontal.Models.Admin;
-using Horizontal.Domain.Repositories.EF;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Horizontal.Mapping
 {

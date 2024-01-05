@@ -12,6 +12,9 @@ namespace Horizontal
 {
     public class Program
     {
+        // This is for delopment purposes only and will be replaced with configuration in Admin section! (TODO)
+        public const int ARTICLES_PER_PAGE = 2;
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);

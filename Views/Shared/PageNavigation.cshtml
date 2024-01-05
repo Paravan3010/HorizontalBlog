@@ -1,0 +1,47 @@
+﻿@using Horizontal.Models.Interfaces;
+
+@model IPageableSite
+
+@if (Model.TotalNumberOfPages > 1)
+{
+    <div class="bottom-pages">
+        <ul>
+            @if (Model.Page > 1)
+            {
+                /* displat arrow left */
+                // TODO
+
+                /* display a maximum of three previous pages */
+                for (int i = Model.Page - 1; i > 0 && i > Model.Page - 4; i--)
+                {
+                    <li>
+                        <span>
+                            @i
+                        </span>
+                    </li>
+                }
+            }
+            @* display current page *@
+            <li class="current-page">
+                <span>
+                    @Model.Page
+                </span>
+            </li>
+            @if (Model.Page != Model.TotalNumberOfPages)
+            {
+                /* display a maximum of three next pages */
+                for (int i = Model.Page + 1; i <= Model.TotalNumberOfPages && i < Model.Page + 4; i++)
+                {
+                    <li>
+                        <span>
+                            @i
+                        </span>
+                    </li>
+                }
+
+                /* displat arrow right */
+                // TODO
+            }
+        </ul>
+    </div>
+}

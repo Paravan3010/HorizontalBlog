@@ -7,6 +7,10 @@
     {
         <link href="/css/big-article-preview.css" rel="stylesheet" />
     }
+    @if (Model.TotalNumberOfPages != 1)
+    {
+        <link href="/css/page-navigation.css" rel="stylesheet" />
+    }
 }
 
 <section>
@@ -19,3 +23,5 @@
         @await Html.PartialAsync("~/Views/Article/BigArticlePreview.cshtml", article)
     }
 </section>
+
+@await Html.PartialAsync("~/Views/Shared/PageNavigation.cshtml", Model)

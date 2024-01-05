@@ -11,6 +11,10 @@
     {
         <link href="/css/big-article-preview.css" rel="stylesheet" />
     }
+    @if (Model.TotalNumberOfPages != 1)
+    {
+        <link href="/css/page-navigation.css" rel="stylesheet" />
+    }
 }
 
 <section class="category">
@@ -23,10 +27,13 @@
         }
         @await Html.PartialAsync("~/Views/Article/BigArticlePreview.cshtml", article)
     }
+
     @if (Model.Articles.Count == 0)
     {
         <p style="text-align: center">Tato kategorie přímo neobsahuje žádné články</p>
     }
+
+    @await Html.PartialAsync("~/Views/Shared/PageNavigation.cshtml", Model)
 </section>
 
 @* Passing to JS *@

@@ -25,12 +25,20 @@ namespace Horizontal.Controllers
             _tagRepository = tagRepository;
         }
 
-        public IActionResult Main()
+        public IActionResult Main(int page = 1)
         {
             var mainModel = new MainModel(_navigationService, _tagRepository);
 
-            foreach (var article in _articleRepository.Articles.Where(x => x.IsPublished).OrderByDescending(x => x.Created))
+            var publishedArticles = _articleRepository.Articles.Where(x => x.IsPublished);
+            foreach (var article in publishedArticles.OrderByDescending(x => x.Created)
+                                                     .Skip(Program.ARTICLES_PER_PAGE * (page - 1))
+                                                     .Take(Program.ARTICLES_PER_PAGE))
+            {
                 mainModel.Articles.Add(HorizontalMapper.MapArticleModel(article, _navigationService, _tagRepository));
+            }
+
+            mainModel.Page = page;
+            mainModel.TotalNumberOfPages = (int)Math.Ceiling(publishedArticles.Count() / (double)Program.ARTICLES_PER_PAGE);
 
             return View(mainModel);
         }
