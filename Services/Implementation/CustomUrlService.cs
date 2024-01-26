@@ -56,9 +56,15 @@ namespace Horizontal.Services.Implementation
             }
 
             if (pageParam == null || pageParam == "1")
+            {
+                if (String.IsNullOrEmpty(customUrl))
+                    return "/"; // Homepage
                 return customUrl;
+            }
             else
+            {
                 return $"{customUrl}/{pageParam}";
+            }
         }
 
         /// <summary>
