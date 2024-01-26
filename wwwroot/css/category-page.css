@@ -1,4 +1,9 @@
-﻿section.category h2 {
+﻿section.category {
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+section.category h2 {
     margin-bottom: 14px;
     font-family: "Montserrat";
     text-align: center;
