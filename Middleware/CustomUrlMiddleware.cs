@@ -1,5 +1,6 @@
 ﻿using Horizontal.Domain;
 using Horizontal.Domain.Repositories;
+using System.Text.RegularExpressions;
 
 namespace Horizontal.Middleware
 {
@@ -17,11 +18,20 @@ namespace Horizontal.Middleware
 
         public async Task InvokeAsync(HttpContext context)
         {
-             var customUrlsRepository = context.RequestServices.GetService<ICustomUrlRepository>();
+            var customUrlsRepository = context.RequestServices.GetService<ICustomUrlRepository>();
 
-            var path = context.Request.Path;
+            var path = context.Request.Path.Value;
+            // If the path ends with '/number', it should be ignored as it represents a page automatically handled by this middleware
+            string page = null;
+            var pageRegex = Regex.Match(path, "\\/[1-9]\\d*$");
+            if (pageRegex.Success)
+            {
+                page = pageRegex.Value.Substring(1);
+                path = path.Substring(0, path.Length - pageRegex.Value.Length);
+            }
+
             // If no such custom URL is mapped continue in middleware pipeline
-            var urlMapping = customUrlsRepository.CustomUrls.FirstOrDefault(x => x.NewUrl == path.Value);
+            var urlMapping = customUrlsRepository.CustomUrls.FirstOrDefault(x => x.NewUrl == path);
             if (urlMapping == null)
             {
                 await _next(context);
@@ -37,6 +47,10 @@ namespace Horizontal.Middleware
             {
                 context.Request.Path = $"{urlMapping.OriginalUrl}";
             }
+
+            // Paging for custom URLs is handled automatically
+            if (page != null && page != "1")
+                context.Request.QueryString = context.Request.QueryString.Add("page", page);
 
             await _next(context);
         }

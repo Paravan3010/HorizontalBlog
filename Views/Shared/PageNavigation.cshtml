@@ -1,0 +1,56 @@
+﻿@using Horizontal.Models.Interfaces;
+@using Horizontal.Services;
+
+@model IPageableSite
+
+@inject ICustomUrlProviderService customUrlProviderService
+
+@if (Model.TotalNumberOfPages > 1)
+{
+    <div class="bottom-pages">
+        <ul>
+            @if (Model.Page > 1)
+            {
+                /* displat arrow left */
+                // TODO
+
+                /* display a maximum of three previous pages */
+                for (int i = Math.Max(Model.Page - 3, 1); i < Model.Page; i++)
+                {
+                    <li>
+                        <a href="@customUrlProviderService.GetCustomUrl(Model.ControllerName, Model.ActionName, Model.RouteValues.Append(("page", i.ToString())).ToArray())">
+                            <span>
+                                @i
+                            </span>
+                        </a>
+                    </li>
+                }
+            }
+            @* display current page *@
+            <li class="current-page">
+                <a href="@customUrlProviderService.GetCustomUrl(Model.ControllerName, Model.ActionName, Model.RouteValues.Append(("page", Model.Page.ToString())).ToArray())">
+                    <span>
+                        @Model.Page
+                    </span>
+                </a>
+            </li>
+            @if (Model.Page != Model.TotalNumberOfPages)
+            {
+                /* display a maximum of three next pages */
+                for (int i = Model.Page + 1; i <= Model.TotalNumberOfPages && i < Model.Page + 4; i++)
+                {
+                    <li>
+                        <a href="@customUrlProviderService.GetCustomUrl(Model.ControllerName, Model.ActionName, Model.RouteValues.Append(("page", i.ToString())).ToArray())">
+                            <span>
+                                @i
+                            </span>
+                        </a>
+                    </li>
+                }
+
+                /* displat arrow right */
+                // TODO
+            }
+        </ul>
+    </div>
+}

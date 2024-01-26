@@ -8,6 +8,7 @@ namespace Horizontal.Domain.Contexts
         public DbSet<Article> Articles => Set<Article>();
         public DbSet<Tag> Tags => Set<Tag>();
         public DbSet<CustomUrl> CustomUrls => Set<CustomUrl>();
+        public DbSet<GeneralSettings> GeneralSettings => Set<GeneralSettings>();
 
         public HorizontalDbContext(DbContextOptions<HorizontalDbContext> options) : base(options) { }
 

@@ -1,0 +1,39 @@
+﻿.bottom-pages {
+    margin: auto;
+    margin-top: 20px;
+}
+
+    .bottom-pages ul {
+        /* flex layout */
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        /* disable default list styling */
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+        .bottom-pages ul li span {
+            font-family: 'Montserrat';
+            font-weight: bold;
+            border: 1px solid #eeeeee;
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 21px;
+        }
+
+        .bottom-pages ul li.current-page span {
+            background-color: #f13544;
+            color: white;
+            border-color: transparent;
+        }
+
+    .bottom-pages a:hover span {
+        background-color: #f13544;
+        color: white;
+        border-color: transparent;
+    }

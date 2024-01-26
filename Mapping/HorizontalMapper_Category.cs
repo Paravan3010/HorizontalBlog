@@ -3,8 +3,7 @@ using Horizontal.Domain;
 using Horizontal.Models;
 using Horizontal.Services;
 using Horizontal.Models.Admin;
-using Horizontal.Domain.Repositories.EF;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Horizontal.Controllers;
 
 namespace Horizontal.Mapping
 {
@@ -12,19 +11,27 @@ namespace Horizontal.Mapping
     {
         public static CategoryModel MapCategoryModel(Category domainModel, INavigationService navService, ITagRepository tagRepo)
         {
-            return new CategoryModel(navService, tagRepo)
+            var model = new CategoryModel(navService, tagRepo)
             {
                 CategoryId = domainModel.Id,
-                CategoryName = domainModel.Name
+                CategoryName = domainModel.Name,
+                ActionName = nameof(CategoryController.Category)
             };
+            model.RouteValues.Add(("categoryId", domainModel.Id.ToString()));
+
+            return model;
         }
 
         public static CategoryModel MapCategoryModel(Tag domainModel, INavigationService navService, ITagRepository tagRepo)
         {
-            return new CategoryModel(navService, tagRepo)
+            var model = new CategoryModel(navService, tagRepo)
             {
-                CategoryName = domainModel.Name
+                CategoryName = domainModel.Name,
+                ActionName = nameof(CategoryController.Tag)
             };
+            model.RouteValues.Add(("tagName", domainModel.Name.ToString()));
+
+            return model;
         }
 
         #region Admin   
@@ -66,7 +73,7 @@ namespace Horizontal.Mapping
             resultModel.IsInTopNavbar = viewModel.IsInTopNavbar;
             resultModel.TopNavbarOrder = viewModel.TopNavbarOrder;
             if (String.IsNullOrEmpty(viewModel.ArticleShortTitles))
-            { 
+            {
                 resultModel.Articles = new List<Article>();
             }
             else
@@ -106,7 +113,7 @@ namespace Horizontal.Mapping
             };
         }
 
-        public static Category MapCategory(AdminCategoryModel viewModel, ICategoryRepository categoryRepository, 
+        public static Category MapCategory(AdminCategoryModel viewModel, ICategoryRepository categoryRepository,
                                            IArticleRepository articleRepository, Category category = null)
         {
             category = category ?? new Category();

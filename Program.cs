@@ -27,6 +27,7 @@ namespace Horizontal
             builder.Services.AddScoped<IArticleRepository, EFArticleRepository>();
             builder.Services.AddScoped<ICategoryRepository, EFCategoryRepository>();
             builder.Services.AddScoped<ICustomUrlRepository, EFCustomUrlRepository>();
+            builder.Services.AddScoped<IGeneralSettingsRepository, EFGeneralSettingsRepository>();
             builder.Services.AddScoped<ICustomUrlProviderService, CustomUrlProviderService>();
             builder.Services.AddSingleton<INavigationService, NavigationService>();
 
