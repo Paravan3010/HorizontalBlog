@@ -15,5 +15,8 @@ namespace Horizontal.Models
         public IList<ArticleModel> Articles { get; set; } = new List<ArticleModel>();
         public int Page { get; set; } = 1;
         public int TotalNumberOfPages { get; set; }
+        public string ControllerName { get; set; } = "Category";
+        public string ActionName { get; set; }
+        public RouteValueDictionary RouteValues { get; set; }
     }
 }

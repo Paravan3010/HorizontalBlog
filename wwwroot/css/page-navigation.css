@@ -31,3 +31,9 @@
             color: white;
             border-color: transparent;
         }
+
+    .bottom-pages a:hover span {
+        background-color: #f13544;
+        color: white;
+        border-color: transparent;
+    }

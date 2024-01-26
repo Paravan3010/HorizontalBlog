@@ -3,6 +3,7 @@ using Horizontal.Domain;
 using Horizontal.Models;
 using Horizontal.Services;
 using Horizontal.Models.Admin;
+using Horizontal.Controllers;
 
 namespace Horizontal.Mapping
 {
@@ -13,7 +14,9 @@ namespace Horizontal.Mapping
             return new CategoryModel(navService, tagRepo)
             {
                 CategoryId = domainModel.Id,
-                CategoryName = domainModel.Name
+                CategoryName = domainModel.Name,
+                ActionName = nameof(CategoryController.Category),
+                RouteValues = new RouteValueDictionary { { "categoryId", domainModel.Id } }
             };
         }
 
@@ -21,7 +24,9 @@ namespace Horizontal.Mapping
         {
             return new CategoryModel(navService, tagRepo)
             {
-                CategoryName = domainModel.Name
+                CategoryName = domainModel.Name,
+                ActionName = nameof(CategoryController.Tag),
+                RouteValues = new RouteValueDictionary { { "tagName", domainModel.Name } }
             };
         }
 

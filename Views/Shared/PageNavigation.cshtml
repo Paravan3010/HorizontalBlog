@@ -4,6 +4,8 @@
 
 @if (Model.TotalNumberOfPages > 1)
 {
+    RouteValueDictionary routeValues;
+
     <div class="bottom-pages">
         <ul>
             @if (Model.Page > 1)
@@ -12,30 +14,46 @@
                 // TODO
 
                 /* display a maximum of three previous pages */
-                for (int i = Model.Page - 1; i > 0 && i > Model.Page - 4; i--)
+                for (int i = Math.Max(Model.Page - 3, 1); i < Model.Page ; i++)
                 {
+                    routeValues = new RouteValueDictionary(Model.RouteValues);
+                    routeValues.Add("page", i);
+
                     <li>
-                        <span>
-                            @i
-                        </span>
+                        <a href="@Url.Action(Model.ActionName, Model.ControllerName, routeValues)">
+                            <span>
+                                @i
+                            </span>
+                        </a>
                     </li>
                 }
             }
             @* display current page *@
             <li class="current-page">
-                <span>
-                    @Model.Page
-                </span>
+                @{
+                    routeValues = new RouteValueDictionary(Model.RouteValues);
+                    routeValues.Add("page", Model.Page);
+                }
+                <a href="@Url.Action(Model.ActionName, Model.ControllerName, routeValues)">
+                    <span>
+                        @Model.Page
+                    </span>
+                </a>
             </li>
             @if (Model.Page != Model.TotalNumberOfPages)
             {
                 /* display a maximum of three next pages */
                 for (int i = Model.Page + 1; i <= Model.TotalNumberOfPages && i < Model.Page + 4; i++)
                 {
+                    routeValues = new RouteValueDictionary(Model.RouteValues);
+                    routeValues.Add("page", i);
+
                     <li>
-                        <span>
-                            @i
-                        </span>
+                        <a href="@Url.Action(Model.ActionName, Model.ControllerName, routeValues)">
+                            <span>
+                                @i
+                            </span>
+                        </a>
                     </li>
                 }
 

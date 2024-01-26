@@ -39,6 +39,7 @@ namespace Horizontal.Controllers
 
             mainModel.Page = page;
             mainModel.TotalNumberOfPages = (int)Math.Ceiling(publishedArticles.Count() / (double)Program.ARTICLES_PER_PAGE);
+            mainModel.ActionName = nameof(Main);
 
             return View(mainModel);
         }

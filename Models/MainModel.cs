@@ -14,5 +14,8 @@ namespace Horizontal.Models
 
         public int Page { get; set; } = 1;
         public int TotalNumberOfPages { get; set; }
+        public string ControllerName { get; set; } = "Home";
+        public string ActionName { get; set; }
+        public RouteValueDictionary RouteValues { get; set; }
     }
 }
