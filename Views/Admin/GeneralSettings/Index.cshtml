@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components.Routing
 @using Horizontal.Models.Admin
 
+@model GeneralSettingsModel
 @{
     Layout = "/Views/Admin/_AdminLayout.cshtml";
 }
@@ -18,4 +19,17 @@
             Aktualizovat levé navigační menu
         </a>
     </div>
+
+    <form method="post" action="@Url.Action("Edit", "GeneralSettings")">
+        <fieldset>
+            <input type="hidden" name="Id" value="@Model.Id">
+
+            <div class="form-group">
+                <label for="PageSize">Velikost stránky</label>
+                <input type="number" name="PageSize" class="form-control" value="@Model.PageSize" />
+            </div>
+        </fieldset>
+
+        <button type="submit" class="btn btn-success mb-2" style="margin-top:10px">Uložit změny</button>
+    </form>
 </div>

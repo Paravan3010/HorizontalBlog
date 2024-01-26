@@ -14,16 +14,19 @@ namespace Horizontal.Controllers
         private ICategoryRepository _categoryRepository;
         private INavigationService _navigationService;
         private ITagRepository _tagRepository;
+        private IGeneralSettingsRepository _generalSettingsRepository;
 
         public CategoryController(ICategoryRepository categoryRepository,
                                   INavigationService navigationService,
                                   IArticleRepository articleRepository,
-                                  ITagRepository tagRepository)
+                                  ITagRepository tagRepository,
+                                  IGeneralSettingsRepository generalSettingsRepository)
         {
             _categoryRepository = categoryRepository;
             _navigationService = navigationService;
             _articleRepository = articleRepository;
             _tagRepository = tagRepository;
+            _generalSettingsRepository = generalSettingsRepository;
         }
 
         public IActionResult Category(int categoryId, int page = 1)
@@ -35,13 +38,13 @@ namespace Horizontal.Controllers
             var model = HorizontalMapper.MapCategoryModel(category, _navigationService, _tagRepository);
             var articlesInCategory = _articleRepository.Articles.Where(x => x.Category != null && x.Category.Id == categoryId && x.IsPublished);
             foreach (var article in articlesInCategory.OrderByDescending(x => x.Created)
-                                                      .Skip(Program.ARTICLES_PER_PAGE * (page - 1))
-                                                      .Take(Program.ARTICLES_PER_PAGE))
+                                                      .Skip((_generalSettingsRepository.GeneralSettings.FirstOrDefault()?.PageSize ?? 10) * (page - 1))
+                                                      .Take(_generalSettingsRepository.GeneralSettings.FirstOrDefault()?.PageSize ?? 10))
             {
                 model.Articles.Add(HorizontalMapper.MapArticleModel(article, _navigationService, _tagRepository));
             }
             model.Page = page;            
-            model.TotalNumberOfPages = (int)Math.Ceiling(articlesInCategory.Count() / (double)Program.ARTICLES_PER_PAGE);
+            model.TotalNumberOfPages = (int)Math.Ceiling(articlesInCategory.Count() / (double)(_generalSettingsRepository.GeneralSettings.FirstOrDefault()?.PageSize ?? 10));
 
             return View(model);
         }
@@ -55,13 +58,13 @@ namespace Horizontal.Controllers
             var model = HorizontalMapper.MapCategoryModel(tag, _navigationService, _tagRepository);
             var articlesWithTag = tag.Articles.Where(x => x.IsPublished);
             foreach (var article in articlesWithTag.OrderByDescending(x => x.Created)
-                                                   .Skip(Program.ARTICLES_PER_PAGE * (page - 1))
-                                                   .Take(Program.ARTICLES_PER_PAGE))
+                                                   .Skip((_generalSettingsRepository.GeneralSettings.FirstOrDefault()?.PageSize ?? 10) * (page - 1))
+                                                   .Take(_generalSettingsRepository.GeneralSettings.FirstOrDefault()?.PageSize ?? 10))
             {
                 model.Articles.Add(HorizontalMapper.MapArticleModel(article, _navigationService, _tagRepository));
             }
             model.Page = page;
-            model.TotalNumberOfPages = (int)Math.Ceiling(articlesWithTag.Count() / (double)Program.ARTICLES_PER_PAGE);
+            model.TotalNumberOfPages = (int)Math.Ceiling(articlesWithTag.Count() / (double)(_generalSettingsRepository.GeneralSettings.FirstOrDefault()?.PageSize ?? 10));
 
             return View("Views/Category/Category.cshtml", model);
         }

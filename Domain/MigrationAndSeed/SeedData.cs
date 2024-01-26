@@ -25,6 +25,8 @@ namespace Horizontal.Domain.MigrationAndSeed
             PopulateArticles(context);
             PopulateTags(context);
             PopulateCustomUrlMapping(context);
+
+            PopulateGeneralSettings(context);
         }
 
         private static void PopulateCategories(HorizontalDbContext context)
@@ -627,6 +629,17 @@ namespace Horizontal.Domain.MigrationAndSeed
                                         trainTravelIndiaUrlMapping);
             #endregion Articles
 
+            context.SaveChanges();
+        }
+
+        private static void PopulateGeneralSettings(HorizontalDbContext context)
+        {
+            var settings = new GeneralSettings()
+            {
+                Id = 1,
+                PageSize = 10
+            };
+            context.GeneralSettings.Add(settings);
             context.SaveChanges();
         }
     }

@@ -12,9 +12,6 @@ namespace Horizontal
 {
     public class Program
     {
-        // This is for delopment purposes only and will be replaced with configuration in Admin section! (TODO)
-        public const int ARTICLES_PER_PAGE = 2;
-
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +27,7 @@ namespace Horizontal
             builder.Services.AddScoped<IArticleRepository, EFArticleRepository>();
             builder.Services.AddScoped<ICategoryRepository, EFCategoryRepository>();
             builder.Services.AddScoped<ICustomUrlRepository, EFCustomUrlRepository>();
+            builder.Services.AddScoped<IGeneralSettingsRepository, EFGeneralSettingsRepository>();
             builder.Services.AddScoped<ICustomUrlProviderService, CustomUrlProviderService>();
             builder.Services.AddSingleton<INavigationService, NavigationService>();
 
