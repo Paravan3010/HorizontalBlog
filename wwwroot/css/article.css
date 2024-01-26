@@ -109,7 +109,7 @@
         text-align: left;
     }
 
-    .table thead th, .table tfoot td {
+    .table th, .table tfoot td {
         font-size: 14px;
         color: #0a0a0a;
         font-weight: 600;
