@@ -69,9 +69,9 @@ namespace Horizontal.Services.Implementation
         private string GetCustomUrlFromOriginalUrl(string originalUrl)
         {
             var mappingRecord = _customUrlRepository.CustomUrls.Where(x => x.OriginalUrl == originalUrl).FirstOrDefault();
-            if (mappingRecord == null || mappingRecord.NewUrl == null)
+            if (mappingRecord == null)
                 return originalUrl;
-            return mappingRecord.NewUrl;
+            return mappingRecord.NewUrl ?? String.Empty;
         }
 
         public bool HasCustomUrl(string controller, string action = null, params (string key, string value)[] parameters)

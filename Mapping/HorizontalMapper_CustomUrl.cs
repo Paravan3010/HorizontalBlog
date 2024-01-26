@@ -12,8 +12,8 @@ namespace Horizontal.Mapping
             {
                 Id = domainModel.Id,
                 IsActive = domainModel.IsActive,
-                OriginalUrl = domainModel.OriginalUrl,
-                NewUrl = domainModel.NewUrl
+                OriginalUrl = domainModel.OriginalUrl ?? String.Empty,
+                NewUrl = domainModel.NewUrl ?? String.Empty
             };
         }
 
@@ -21,8 +21,8 @@ namespace Horizontal.Mapping
         {
             resultModel = resultModel ?? new CustomUrl();
             resultModel.IsActive = viewModel.IsActive;
-            resultModel.OriginalUrl = viewModel.OriginalUrl;
-            resultModel.NewUrl = viewModel.NewUrl;
+            resultModel.OriginalUrl = viewModel.OriginalUrl ?? String.Empty;
+            resultModel.NewUrl = viewModel.NewUrl ?? String.Empty;
 
             return resultModel;
         }
