@@ -1,11 +1,12 @@
 ﻿@using Horizontal.Models.Interfaces;
+@using Horizontal.Services;
 
 @model IPageableSite
 
+@inject ICustomUrlProviderService customUrlProviderService
+
 @if (Model.TotalNumberOfPages > 1)
 {
-    RouteValueDictionary routeValues;
-
     <div class="bottom-pages">
         <ul>
             @if (Model.Page > 1)
@@ -14,13 +15,10 @@
                 // TODO
 
                 /* display a maximum of three previous pages */
-                for (int i = Math.Max(Model.Page - 3, 1); i < Model.Page ; i++)
+                for (int i = Math.Max(Model.Page - 3, 1); i < Model.Page; i++)
                 {
-                    routeValues = new RouteValueDictionary(Model.RouteValues);
-                    routeValues.Add("page", i);
-
                     <li>
-                        <a href="@Url.Action(Model.ActionName, Model.ControllerName, routeValues)">
+                        <a href="@customUrlProviderService.GetCustomUrl(Model.ControllerName, Model.ActionName, Model.RouteValues.Append(("page", i.ToString())).ToArray())">
                             <span>
                                 @i
                             </span>
@@ -30,11 +28,7 @@
             }
             @* display current page *@
             <li class="current-page">
-                @{
-                    routeValues = new RouteValueDictionary(Model.RouteValues);
-                    routeValues.Add("page", Model.Page);
-                }
-                <a href="@Url.Action(Model.ActionName, Model.ControllerName, routeValues)">
+                <a href="@customUrlProviderService.GetCustomUrl(Model.ControllerName, Model.ActionName, Model.RouteValues.Append(("page", Model.Page.ToString())).ToArray())">
                     <span>
                         @Model.Page
                     </span>
@@ -45,11 +39,8 @@
                 /* display a maximum of three next pages */
                 for (int i = Model.Page + 1; i <= Model.TotalNumberOfPages && i < Model.Page + 4; i++)
                 {
-                    routeValues = new RouteValueDictionary(Model.RouteValues);
-                    routeValues.Add("page", i);
-
                     <li>
-                        <a href="@Url.Action(Model.ActionName, Model.ControllerName, routeValues)">
+                        <a href="@customUrlProviderService.GetCustomUrl(Model.ControllerName, Model.ActionName, Model.RouteValues.Append(("page", i.ToString())).ToArray())">
                             <span>
                                 @i
                             </span>

@@ -17,6 +17,6 @@ namespace Horizontal.Models
         public int TotalNumberOfPages { get; set; }
         public string ControllerName { get; set; } = "Category";
         public string ActionName { get; set; }
-        public RouteValueDictionary RouteValues { get; set; }
+        public List<(string, string)> RouteValues { get; set; } = new List<(string, string)>();
     }
 }
