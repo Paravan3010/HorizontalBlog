@@ -629,6 +629,9 @@ namespace Horizontal.Domain.MigrationAndSeed
                                         trainTravelIndiaUrlMapping);
             #endregion Articles
 
+            // Default Homepage mapping
+            context.CustomUrls.Add(new CustomUrl() { IsActive = true, OriginalUrl = "/Home/Main", NewUrl = "" });
+
             context.SaveChanges();
         }
 
