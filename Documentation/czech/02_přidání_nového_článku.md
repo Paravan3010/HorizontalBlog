@@ -15,3 +15,4 @@ Mapování vlastních URL probíhá v Administraci aplikace v sekci _Mapování 
 
 ## Spuštění aplikace pro vývoj
 Po vytvoření a nakonfigurování spojení do databáze (viz výše) jsou při prvním spuštění aplikovány migrace, které v ní vytvoří příslušné struktury. Pokud je zapnuto plnění testovacími daty (viz výše) a jedná se o vývojové prostředí, jsou tyto struktury navíc naplněny příkladovými daty. Při spuštění z Visual Studia tak nejsou potřeba žádné další kroky.
+Levé navigační menu se generuje při startu aplikace. Aby se v něm projevila změna (přidání nového článku), je potřeba vynutit aktualizaci pomocí tlačíka *Aktualizovat levé navigační menu* v panelu *Obecné nastavení* v admin sekci.
