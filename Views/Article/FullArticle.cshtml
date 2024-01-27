@@ -27,12 +27,14 @@
                 <span class="full-article__footing-actualized">Aktualizováno: <time datetime="@Model.LastUpdated.ToString("yyyy-MM-dd")">@Model.LastUpdated.ToString("dd. MM. yyyy")</time></span>
             }
         </div>
-        @* @if (Model.GalleryExists)
+         @if (Model.GalleryExists)
         {
-        <a class="full-article__gallery-link">
-        Galerie
-        </a>
-        }*@
+            <div class="full-article__gallery-link">
+                <a href="@Model.GalleryUrl">
+                    Galerie
+                </a>
+            </div>
+        }
         @if (Model.Tags.Any())
         {
             <div class="tags">

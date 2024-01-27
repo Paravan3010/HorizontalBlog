@@ -46,6 +46,7 @@
 .full-article__footing {
     display: grid;
     grid-template-areas: "tags dates"
+        "gallery gallery"
         "nav nav";
     grid-template-columns: 1fr auto;
     grid-column-gap: 90px;
@@ -56,6 +57,12 @@
     grid-area: dates;
     width: 220px;
     text-align: end;
+}
+
+.full-article__gallery-link {
+    grid-area: gallery;
+    margin-top: 10px;
+    justify-self: end;
 }
 
 .tags {
@@ -74,7 +81,7 @@
     color: #808080;
 }
 
-.tags em {
+.tags em, .full-article__gallery-link a {
     text-align: center;
     text-transform: uppercase;
     line-height: 1.5em;
@@ -194,7 +201,7 @@ div.footnotes small {
     }
 
 @media (hover: hover) {
-    .tags em:hover {
+    .tags em:hover, .full-article__gallery-link a:hover {
         color: #f13544;
         border-color: #f13544;
     }
