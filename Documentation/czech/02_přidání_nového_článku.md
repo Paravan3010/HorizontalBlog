@@ -1,18 +1,18 @@
-# Konfigurace aplikace a první spuštění
-Vytvořte kopii souboru appsettings.Example.json, přejmenujte jej na appsettings.Development (případně appsettings.Production) a nakonfigurujte podle popisu níže.
+# Založení nového článku
+V admin sekci přidám nový článek a vyplním udáje.
 
-## Konfigurace v appsettings.json
-Vyžadovaná konfigurace:
-1) Connection string do databáze v uzlu *ConnectionStrings:MainConnection*. Např.: *Server=**SERVER**;Database=**DATABASE**;Trusted_Connection=True;MultipleActiveResultSets=true;TRUSTSERVERCERTIFICATE=yes;*
-2) Přihlašovací jméno a heslo do admin části webu v uzlech *AdminUser:Login* a *AdminUser:Password*. Heslo musí splňovat defaultní bezpečnostní standardy: musí obsahovat velké písmeno, malé písmeno, číslici a nealfanumerický znak. Zároveň nesmí být kratší, než 6 znaků. Pokud toto nebude splněno, nebude účet při prvním spuštění založen a nebude možné se přihlásit do Admin sekce. Pokus o založení účtu proběhne při každém dalším spuštění. Stačí tedy překonfigurovat heslo a spustit aplikaci znovu.
+## Text článku
+Text článku je uložen jako HTML soubor, který je dynamicky dočítán při zobrazení detailu článku.
 
-Volitelná konfigurace:
-1) Naplnění databáze příkladovými testovacími daty v uzlu *FillWithTestData*. Tato příkladová data používají články a obrázky uložené v tomto repozitáři ve složkách wwwroot/articles a wwwroot/img. Testovací záznamy se do DB vloží pouze v případě, že v ní již nejsou uloženy jiné záznamy. Toto nastavení je relevantní pouze pro vývojové prostředí, na produkčním prostředí není zohledněno a testovací data tam nejsou naplněna nikdy.
+## Obrázky článku
+Veškeré obrázky v článku musí být umístěny v lokaci odpovídající odkazům v HTML souboru. Momentálně se předpokládají pouze horizontálně orientované obrázky.
+Veškeré obrázky musí být vyexportovány v horizontálním rozlišení **1565 px** a ve složce musí být umístěny jak ve formátu *WebP*, tak ve spádovém formátu *JPG*. Toto musí být reflektováno ve všech obrázcích vložených v HTML souboru článku (viz vzorový post).
+V každém **img** tagu uvnitř článku uvádějte *width* i *height*, aby se předešlo posouvání layoutu při jejich postupném dočítání u pomalého internetového spojení. Zároveň je doporučeno všem obrázkům článku přidat atribut *loading="lazy"*, který umožní jejich líné načítání.
+Náhledový obrázek pro *Big Article Preview* (použit např. na hlavní stránce a při filtrování dle kategorie nebo tagu) bude zobrazen v horizontální orientaci ve formátu **2:1**. U obrázků uvnitř článku je poměr stran zachován.
 
-## Mapování vlastních URL
-Mapování vlastních URL probíhá v Administraci aplikace v sekci _Mapování URL_. 
-**Domovskou stránku** je pro korektní fungování doporučeno **mapovat na prázdný řetězec**. Tj. zavést mapování "_/Home/Main_" => "".
+## Publikace článku
+Články, které nejsou označeny jako publikované, jsou viditelné pouze pod admin přihlášením. Bez něj je při přístupu na URL článku vrácen error *404 Not Found*.
 
-## Spuštění aplikace pro vývoj
-Po vytvoření a nakonfigurování spojení do databáze (viz výše) jsou při prvním spuštění aplikovány migrace, které v ní vytvoří příslušné struktury. Pokud je zapnuto plnění testovacími daty (viz výše) a jedná se o vývojové prostředí, jsou tyto struktury navíc naplněny příkladovými daty. Při spuštění z Visual Studia tak nejsou potřeba žádné další kroky.
+## Levé navigační menu
+Pro korektní zahrnutí článku do levého navigačního menu je potřeba nastavit *krátký titulek*, pod kterým se v levém manu zobrazí, a také je potřeba korektně nastavit nadřazenou kategorii.
 Levé navigační menu se generuje při startu aplikace. Aby se v něm projevila změna (přidání nového článku), je potřeba vynutit aktualizaci pomocí tlačíka *Aktualizovat levé navigační menu* v panelu *Obecné nastavení* v admin sekci.
