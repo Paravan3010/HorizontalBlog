@@ -5,7 +5,10 @@ namespace Horizontal.Models
 {
     public class ArticleModel : BaseModel
     {
-        public ArticleModel(INavigationService navigationService, ITagRepository tagRepository) : base(navigationService, tagRepository)
+        public ArticleModel(INavigationService navigationService, 
+                            ITagRepository tagRepository, 
+                            ICategoryRepository categoryRepository) : 
+            base(navigationService, tagRepository, categoryRepository)
         {
         }
 

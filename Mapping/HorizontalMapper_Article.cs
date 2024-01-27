@@ -44,9 +44,9 @@ namespace Horizontal.Mapping
             return resultModel;
         }
 
-        public static ArticleModel MapArticleModel(Article domainModel, INavigationService navService, ITagRepository tagRepo)
+        public static ArticleModel MapArticleModel(Article domainModel, INavigationService navService, ITagRepository tagRepo, ICategoryRepository categoryRepo)
         {
-            return new ArticleModel(navService, tagRepo)
+            return new ArticleModel(navService, tagRepo, categoryRepo)
             {
                 Id = domainModel.Id,
                 PreviewPhotoPath = String.IsNullOrEmpty(domainModel.PreviewPhotoPath) ? "/img/development/dummy_1250x500.png" : domainModel.PreviewPhotoPath,

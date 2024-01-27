@@ -8,6 +8,8 @@
         public bool IsPublished { get; set; } = false;
         public string ChildCategoryNames { get; set; } = String.Empty;
         public string ArticleShortNames { get; set; } = String.Empty;
+        public bool IsInTopNavbar { get; set; }
+        public int TopNavbarOrder { get; set; } = 0;
         public string CustomUrl { get; set; } = String.Empty;
     }
 }

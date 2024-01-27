@@ -9,9 +9,9 @@ namespace Horizontal.Mapping
 {
     public static partial class HorizontalMapper
     {
-        public static CategoryModel MapCategoryModel(Category domainModel, INavigationService navService, ITagRepository tagRepo)
+        public static CategoryModel MapCategoryModel(Category domainModel, INavigationService navService, ITagRepository tagRepo, ICategoryRepository categoryRepo)
         {
-            var model = new CategoryModel(navService, tagRepo)
+            var model = new CategoryModel(navService, tagRepo, categoryRepo)
             {
                 CategoryId = domainModel.Id,
                 CategoryName = domainModel.Name,
@@ -22,9 +22,9 @@ namespace Horizontal.Mapping
             return model;
         }
 
-        public static CategoryModel MapCategoryModel(Tag domainModel, INavigationService navService, ITagRepository tagRepo)
+        public static CategoryModel MapCategoryModel(Tag domainModel, INavigationService navService, ITagRepository tagRepo, ICategoryRepository categoryRepo)
         {
-            var model = new CategoryModel(navService, tagRepo)
+            var model = new CategoryModel(navService, tagRepo, categoryRepo)
             {
                 CategoryName = domainModel.Name,
                 ActionName = nameof(CategoryController.Tag)
@@ -107,6 +107,8 @@ namespace Horizontal.Mapping
                 Name = domainModel.Name,
                 ParentCategoryName = domainModel?.ParentCategory?.Name ?? String.Empty,
                 IsPublished = domainModel.IsPublished,
+                IsInTopNavbar = domainModel.IsInTopNavbar,
+                TopNavbarOrder = domainModel.TopNavbarOrder,
                 ChildCategoryNames = String.Join(", ", domainModel?.ChildCategories.Select(x => x.Name) ?? Enumerable.Empty<string>()),
                 ArticleShortNames = String.Join(", ", domainModel?.Articles.Select(x => x.ShortTitle) ?? Enumerable.Empty<string>()),
                 CustomUrl = customUrlRepository.CustomUrls?.Where(x => x.OriginalUrl == $"/Category/Category?categoryId={domainModel.Id}").FirstOrDefault()?.NewUrl ?? String.Empty
@@ -119,6 +121,8 @@ namespace Horizontal.Mapping
             category = category ?? new Category();
             category.Name = viewModel.Name;
             category.IsPublished = viewModel.IsPublished;
+            category.IsInTopNavbar = viewModel.IsInTopNavbar;
+            category.TopNavbarOrder = viewModel.TopNavbarOrder;
             if (!String.IsNullOrEmpty(viewModel.ParentCategoryName))
                 category.ParentCategory = categoryRepository.Categories.Where(x => x.Name == viewModel.ParentCategoryName).FirstOrDefault();
             if (!String.IsNullOrEmpty(viewModel.ChildCategoryNames))

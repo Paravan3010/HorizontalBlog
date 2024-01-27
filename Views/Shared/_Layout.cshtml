@@ -1,5 +1,6 @@
 ﻿@using Horizontal.Models;
 @using Horizontal.Controllers;
+@using Horizontal.Models.Admin;
 @using Horizontal.Models.Navigation;
 @using Horizontal.Services;
 @using Microsoft.AspNetCore.Html;
@@ -86,14 +87,22 @@
 
                 <nav class="navbar__main-nav">
                     <ul>
-                        @foreach (var tag in Model.TopNavbarTags ?? Enumerable.Empty<string>())
+                        @foreach (var link in Model.TopNavbarLinks ?? Enumerable.Empty<TopNavbarLinkModel>())
                         {
                             <li>
-                                @if (tag != Model.TopNavbarTags?.First())
+                                @if (link != Model.TopNavbarLinks?.First())
                                 {
                                     <span class="navbar__divider_vertical"></span>
                                 }
-                                <a href="@customUrlProviderService.GetCustomUrl("Category", "Tag", (key: "tagName", value: tag))">@tag</a>
+
+                                @if (link.Type == "Tag")
+                                {
+                                    <a href="@customUrlProviderService.GetCustomUrl("Category", "Tag", (key: "tagName", value: link.Name))">@link.Name</a>
+                                }
+                                @if (link.Type == "Category")
+                                {
+                                    <a href="@customUrlProviderService.GetCustomUrl("Category", "Category", (key: "categoryId", value: link.CategoryId.ToString()))">@link.Name</a>
+                                }                                
                             </li>
                         }
                     </ul>
