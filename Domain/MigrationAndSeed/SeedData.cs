@@ -33,10 +33,10 @@ namespace Horizontal.Domain.MigrationAndSeed
         {
             var northAmerica = new Category() { Name = "North America", IsPublished = true };
             {
-                var usa = new Category() { Name = "USA", ParentCategory = northAmerica, IsPublished = true };
+                var usa = new Category() { Name = "USA", ParentCategory = northAmerica, IsPublished = true, IsInTopNavbar = true, TopNavbarOrder = 7 };
                 northAmerica.ChildCategories.Add(usa);
                 {
-                    var eastCoast = new Category() { Name = "East Coast", ParentCategory = usa, IsPublished = true };
+                    var eastCoast = new Category() { Name = "East Coast", ParentCategory = usa, IsPublished = true, IsInTopNavbar = true, TopNavbarOrder = 8 };
                     usa.ChildCategories.Add(eastCoast);
                     var westCoast = new Category() { Name = "West Coast", ParentCategory = usa, IsPublished = true };
                     usa.ChildCategories.Add(westCoast);
@@ -639,7 +639,6 @@ namespace Horizontal.Domain.MigrationAndSeed
         {
             var settings = new GeneralSettings()
             {
-                Id = 1,
                 PageSize = 10
             };
             context.GeneralSettings.Add(settings);

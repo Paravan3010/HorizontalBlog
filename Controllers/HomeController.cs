@@ -15,29 +15,32 @@ namespace Horizontal.Controllers
         private INavigationService _navigationService;
         private IArticleRepository _articleRepository;
         private ITagRepository _tagRepository;
+        private ICategoryRepository _categoryRepository;
         private IGeneralSettingsRepository _generalSettingsRepository;
 
         public HomeController(INavigationService navigationService,
                               IArticleRepository articleRepository,
                               ITagRepository tagRepository,
+                              ICategoryRepository categoryRepository,
                               IGeneralSettingsRepository generalSettingsRepository)
         {
             _navigationService = navigationService;
             _articleRepository = articleRepository;
             _tagRepository = tagRepository;
+            _categoryRepository = categoryRepository;
             _generalSettingsRepository = generalSettingsRepository;
         }
 
         public IActionResult Main(int page = 1)
         {
-            var mainModel = new MainModel(_navigationService, _tagRepository);
+            var mainModel = new MainModel(_navigationService, _tagRepository, _categoryRepository);
 
             var publishedArticles = _articleRepository.Articles.Where(x => x.IsPublished);
             foreach (var article in publishedArticles.OrderByDescending(x => x.Created)
                                                      .Skip((_generalSettingsRepository.GeneralSettings.FirstOrDefault()?.PageSize ?? 10) * (page - 1))
                                                      .Take(_generalSettingsRepository.GeneralSettings.FirstOrDefault()?.PageSize ?? 10))
             {
-                mainModel.Articles.Add(HorizontalMapper.MapArticleModel(article, _navigationService, _tagRepository));
+                mainModel.Articles.Add(HorizontalMapper.MapArticleModel(article, _navigationService, _tagRepository, _categoryRepository));
             }
 
             mainModel.Page = page;

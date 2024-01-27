@@ -6,7 +6,10 @@ namespace Horizontal.Models
 {
     public class CategoryModel : BaseModel, IPageableSite
     {
-        public CategoryModel(INavigationService navigationService, ITagRepository tagRepository) : base(navigationService, tagRepository)
+        public CategoryModel(INavigationService navigationService, 
+                             ITagRepository tagRepository, 
+                             ICategoryRepository categoryRepository) : 
+            base(navigationService, tagRepository, categoryRepository)
         {
         }
 
