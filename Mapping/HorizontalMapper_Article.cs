@@ -57,6 +57,7 @@ namespace Horizontal.Mapping
                 LastUpdated = domainModel.LastUpdated,
                 TextBeginning = domainModel.TextBeginning,
                 GalleryExists = !String.IsNullOrEmpty(domainModel.GalleryUrl),
+                GalleryUrl = domainModel.GalleryUrl,
                 PreviousArticleId = domainModel.PreviousArticle?.Id,
                 PreviousArticleShortName = String.IsNullOrEmpty(domainModel.PreviousArticle?.LongTitle) ?
                                                 domainModel.PreviousArticle?.ShortTitle :

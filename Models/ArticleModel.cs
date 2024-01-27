@@ -18,6 +18,7 @@ namespace Horizontal.Models
         public string TextBeginning { get; set; } = String.Empty;
         public string ArticleHtmlPath { get; set; } = String.Empty;
         public bool GalleryExists { get; set; } = false;
+        public string GalleryUrl{ get; set; } = String.Empty;
 
         public int? NextArticleId { get; set; }
         public string NextArticleShortName { get; set; } = String.Empty;
