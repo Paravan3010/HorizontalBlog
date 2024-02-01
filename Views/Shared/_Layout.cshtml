@@ -53,7 +53,8 @@
 <html lang="cs">
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Horizontal</title>
+    <title>@Model.PageTitle</title>
+    <meta name="description" content="@Model.PageDescription?.Replace('"', '\'')" />
     <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
     <link href="/css/general.css" rel="stylesheet" />
     <link href="/css/main-page.css" rel="stylesheet" />

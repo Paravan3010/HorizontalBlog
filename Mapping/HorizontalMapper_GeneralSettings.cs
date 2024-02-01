@@ -12,7 +12,9 @@ namespace Horizontal.Mapping
             return new GeneralSettingsModel()
             {
                 Id = domainModel.Id,
-                PageSize = domainModel.PageSize
+                PageSize = domainModel.PageSize,
+                MainPageTitle = domainModel.MainPageTitle ?? String.Empty,
+                MainPageDescription = domainModel.MainPageDescription ?? String.Empty,
             };
         }
 
@@ -21,6 +23,8 @@ namespace Horizontal.Mapping
             var result = domainModel ?? new GeneralSettings();
             result.Id = viewModel.Id;
             result.PageSize = viewModel.PageSize;
+            result.MainPageTitle = viewModel.MainPageTitle ?? String.Empty;
+            result.MainPageDescription = viewModel.MainPageDescription ?? String.Empty;
             return result;
         }
 

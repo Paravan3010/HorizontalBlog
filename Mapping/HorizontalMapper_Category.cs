@@ -15,7 +15,9 @@ namespace Horizontal.Mapping
             {
                 CategoryId = domainModel.Id,
                 CategoryName = domainModel.Name,
-                ActionName = nameof(CategoryController.Category)
+                ActionName = nameof(CategoryController.Category),
+                PageTitle = domainModel.PageTitle,
+                PageDescription = domainModel.PageDescription
             };
             model.RouteValues.Add(("categoryId", domainModel.Id.ToString()));
 
@@ -27,7 +29,9 @@ namespace Horizontal.Mapping
             var model = new CategoryModel(navService, tagRepo, categoryRepo)
             {
                 CategoryName = domainModel.Name,
-                ActionName = nameof(CategoryController.Tag)
+                ActionName = nameof(CategoryController.Tag),
+                PageTitle = domainModel.PageTitle,
+                PageDescription = domainModel.PageDescription
             };
             model.RouteValues.Add(("tagName", domainModel.Name.ToString()));
 
@@ -40,7 +44,7 @@ namespace Horizontal.Mapping
             return new TagPreviewModel
             {
                 Id = domainModel.Id,
-                Name = domainModel.Name,
+                Name = domainModel.Name,                
                 IsPublished = domainModel.IsPublished,
                 IsInTopNavbar = domainModel.IsInTopNavbar,
                 CustomUrl = customUrlProvider.HasCustomUrl("Category", "Tag", (key: "tagName", value: domainModel.Name)) ?
@@ -55,6 +59,8 @@ namespace Horizontal.Mapping
             {
                 Id = domainModel.Id,
                 Name = domainModel.Name,
+                PageTitle = domainModel.PageTitle ?? String.Empty,
+                PageDescription = domainModel.PageDescription ?? String.Empty,
                 IsPublished = domainModel.IsPublished,
                 IsInTopNavbar = domainModel.IsInTopNavbar,
                 TopNavbarOrder = domainModel.TopNavbarOrder,
@@ -69,6 +75,8 @@ namespace Horizontal.Mapping
         {
             resultModel = resultModel ?? new Tag();
             resultModel.Name = viewModel.Name;
+            resultModel.PageTitle = viewModel.PageTitle ?? String.Empty;
+            resultModel.PageDescription = viewModel.PageDescription ?? String.Empty;
             resultModel.IsPublished = viewModel.IsPublished;
             resultModel.IsInTopNavbar = viewModel.IsInTopNavbar;
             resultModel.TopNavbarOrder = viewModel.TopNavbarOrder;
@@ -102,6 +110,8 @@ namespace Horizontal.Mapping
             {
                 Id = domainModel.Id,
                 Name = domainModel.Name,
+                PageTitle = domainModel.PageTitle ?? String.Empty,
+                PageDescription = domainModel.PageDescription ?? String.Empty,
                 ParentCategoryName = domainModel?.ParentCategory?.Name ?? String.Empty,
                 IsPublished = domainModel.IsPublished,
                 IsInTopNavbar = domainModel.IsInTopNavbar,
@@ -117,6 +127,8 @@ namespace Horizontal.Mapping
         {
             category = category ?? new Category();
             category.Name = viewModel.Name;
+            category.PageTitle = viewModel.PageTitle ?? String.Empty;
+            category.PageDescription = viewModel.PageDescription ?? String.Empty;
             category.IsPublished = viewModel.IsPublished;
             category.IsInTopNavbar = viewModel.IsInTopNavbar;
             category.TopNavbarOrder = viewModel.TopNavbarOrder;

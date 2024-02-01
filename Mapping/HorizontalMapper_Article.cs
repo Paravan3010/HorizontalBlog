@@ -3,13 +3,41 @@ using Horizontal.Domain;
 using Horizontal.Models;
 using Horizontal.Services;
 using Horizontal.Models.Admin;
-using Horizontal.Domain.Repositories.EF;
-using Horizontal.Services.Implementation;
 
 namespace Horizontal.Mapping
 {
     public static partial class HorizontalMapper
     {
+        public static ArticleModel MapArticleModel(Article domainModel, INavigationService navService, ITagRepository tagRepo,
+                                                   ICategoryRepository categoryRepo, IArticleTagRepository articleTagRepository)
+        {
+            return new ArticleModel(navService, tagRepo, categoryRepo)
+            {
+                Id = domainModel.Id,
+                PreviewPhotoPath = String.IsNullOrEmpty(domainModel.PreviewPhotoPath) ? "/img/development/dummy_1250x500.png" : domainModel.PreviewPhotoPath,
+                ArticleHtmlPath = domainModel.FilePath ?? String.Empty,
+                Tags = articleTagRepository.GetTagsByArticle(domainModel).Select(x => x.Name).ToList(),
+                Title = domainModel.LongTitle ?? domainModel.ShortTitle,
+                Published = domainModel.Created,
+                LastUpdated = domainModel.LastUpdated,
+                TextBeginning = domainModel.TextBeginning,
+                PageTitle = domainModel.PageTitle ?? String.Empty,
+                PageDescription = domainModel.PageDescription ?? String.Empty,
+                GalleryExists = !String.IsNullOrEmpty(domainModel.GalleryUrl),
+                GalleryUrl = domainModel.GalleryUrl,
+                PreviousArticleId = domainModel.PreviousArticle?.Id,
+                PreviousArticleShortName = String.IsNullOrEmpty(domainModel.PreviousArticle?.LongTitle) ?
+                                                domainModel.PreviousArticle?.ShortTitle :
+                                                domainModel.PreviousArticle?.LongTitle,
+                IsPreviousArticlePublished = domainModel.PreviousArticle?.IsPublished ?? false,
+                NextArticleId = domainModel.NextArticle?.Id,
+                NextArticleShortName = String.IsNullOrEmpty(domainModel.NextArticle?.LongTitle) ?
+                                            domainModel.NextArticle?.ShortTitle :
+                                            domainModel.NextArticle?.LongTitle,
+                IsNextArticlePublished = domainModel.NextArticle?.IsPublished ?? false,
+            };
+        }
+
         #region Admin
         public static Article MapArticle(AdminArticleModel viewModel, ICategoryRepository categoryRepository,
                                          ITagRepository tagRepository, IArticleRepository articleRepository,
@@ -22,6 +50,8 @@ namespace Horizontal.Mapping
             resultModel.ShortTitle = viewModel.ShortTitle;
             resultModel.LongTitle = viewModel.LongTitle;
             resultModel.TextBeginning = viewModel.TextBeginning;
+            resultModel.PageTitle = viewModel.PageTitle ?? String.Empty;
+            resultModel.PageDescription = viewModel.PageDescription ?? String.Empty;
             resultModel.Category = categoryRepository.Categories.Where(x => x.Name == viewModel.CategoryName).FirstOrDefault();
             resultModel.Created = DateTime.Parse(viewModel.Published);
             resultModel.LastUpdated = DateTime.Parse(viewModel.LastUpdated);
@@ -41,34 +71,6 @@ namespace Horizontal.Mapping
                 articleTagRepository.UpsertTagForArticle(resultModel, tagRepository.Tags.Where(x => x.Name == tagName).First(), tagOrder++);
 
             return resultModel;
-        }
-
-        public static ArticleModel MapArticleModel(Article domainModel, INavigationService navService, ITagRepository tagRepo,
-                                                   ICategoryRepository categoryRepo, IArticleTagRepository articleTagRepository)
-        {
-            return new ArticleModel(navService, tagRepo, categoryRepo)
-            {
-                Id = domainModel.Id,
-                PreviewPhotoPath = String.IsNullOrEmpty(domainModel.PreviewPhotoPath) ? "/img/development/dummy_1250x500.png" : domainModel.PreviewPhotoPath,
-                ArticleHtmlPath = domainModel.FilePath ?? String.Empty,
-                Tags = articleTagRepository.GetTagsByArticle(domainModel).Select(x => x.Name).ToList(),
-                Title = domainModel.LongTitle ?? domainModel.ShortTitle,
-                Published = domainModel.Created,
-                LastUpdated = domainModel.LastUpdated,
-                TextBeginning = domainModel.TextBeginning,
-                GalleryExists = !String.IsNullOrEmpty(domainModel.GalleryUrl),
-                GalleryUrl = domainModel.GalleryUrl,
-                PreviousArticleId = domainModel.PreviousArticle?.Id,
-                PreviousArticleShortName = String.IsNullOrEmpty(domainModel.PreviousArticle?.LongTitle) ?
-                                                domainModel.PreviousArticle?.ShortTitle :
-                                                domainModel.PreviousArticle?.LongTitle,
-                IsPreviousArticlePublished = domainModel.PreviousArticle?.IsPublished ?? false,
-                NextArticleId = domainModel.NextArticle?.Id,
-                NextArticleShortName = String.IsNullOrEmpty(domainModel.NextArticle?.LongTitle) ?
-                                            domainModel.NextArticle?.ShortTitle :
-                                            domainModel.NextArticle?.LongTitle,
-                IsNextArticlePublished = domainModel.NextArticle?.IsPublished ?? false,
-            };
         }
 
         public static ArticlePreviewModel MapArticlePreviewModel(Article domainModel, ICustomUrlProviderService customUrlProvider)
@@ -95,6 +97,8 @@ namespace Horizontal.Mapping
                 ShortTitle = domainModel.ShortTitle,
                 LongTitle = domainModel.LongTitle,
                 TextBeginning = domainModel.TextBeginning,
+                PageTitle = domainModel.PageTitle ?? String.Empty,
+                PageDescription = domainModel.PageDescription ?? String.Empty,
                 Order = domainModel.Order,
                 Tags = String.Join(", ", articleTagRepository.GetTagsByArticle(domainModel).Select(x => x.Name) ?? Enumerable.Empty<string>()),
                 FilePath = domainModel.FilePath,

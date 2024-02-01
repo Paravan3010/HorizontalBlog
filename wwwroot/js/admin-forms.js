@@ -1,4 +1,5 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
+﻿// checkboxy
+document.addEventListener("DOMContentLoaded", function () {
     var checkboxes = document.querySelectorAll(".form-check-input");
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener("click", (e) => {
@@ -9,3 +10,10 @@
         });
     });
 });
+
+// pocitadlo znaku
+function updateCharacterCount(textarea, counterId) {
+    var charCountSpan = document.getElementById(counterId);
+    var currentLength = textarea.value.length;
+    charCountSpan.innerText = 'Znaků: ' + currentLength;
+}

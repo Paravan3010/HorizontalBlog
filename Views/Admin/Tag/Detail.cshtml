@@ -25,6 +25,15 @@
             <textarea name="ArticleShortTitles" class="form-control" rows="6" placeholder="Článek 1, Článek 2, Článek 3" >@Model.ArticleShortTitles</textarea>
         </div>
         <div class="form-group">
+            <label for="PageTitle">Titulek stránky tagu (zobrazený mimo jiné v záložce prohlížeče)</label>
+            <input name="PageTitle" class="form-control" value="@Model.PageTitle" />
+        </div>
+        <div class="form-group">
+            <label for="PageDescription">Stručný popis stránky tagu (zobrazený např. v náhledu stránky z internetového vyhledávače)</label>
+            <textarea name="PageDescription" class="form-control" rows="6" oninput="updateCharacterCount(this, 'page-description-char-count')">@Model.PageDescription</textarea>
+            <span id="page-description-char-count" style="float:right">Znaků: @(Model.PageDescription?.Length ?? 0)</span>
+        </div>
+        <div class="form-group">
             <label for="CustomUrl">Vlastní URL</label>
             <input name="CustomUrl" class="form-control" rows="3" value="@Model.CustomUrl" />
         </div>

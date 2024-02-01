@@ -33,6 +33,15 @@ namespace Horizontal.Models
         public IList<TopNavbarLinkModel> TopNavbarLinks { get; set; }
         public IList<CategoryNavigationModel> CategoriesNavigation { get; set; }
 
+        /// <summary>
+        /// Page title
+        /// </summary>
+        public string PageTitle { get; set; }
+        /// <summary>
+        /// Short description of page content, that is used as description meta tag
+        /// </summary>
+        public string PageDescription { get; set; }
+
         private class TopNavBarLink
         {
             /// <summary>

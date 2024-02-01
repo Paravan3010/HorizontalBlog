@@ -4,6 +4,8 @@
     {
         public int Id { get; set; }
         public string Name { get; set; } = String.Empty;
+        public string PageTitle { get; set; } = String.Empty;
+        public string PageDescription { get; set; } = String.Empty;
         public bool IsPublished { get; set; } = false;
         public bool IsInTopNavbar { get; set; } = false;
         public int TopNavbarOrder { get; set; }
