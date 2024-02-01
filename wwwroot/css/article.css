@@ -327,7 +327,8 @@ div.footnotes small {
     .full-article__footing {
         grid-template-areas: "dates"
             "tags"
-            "nav";
+            "nav"
+            "gallery";
         grid-column-gap: 0px;
         grid-row-gap: 10px;
     }
