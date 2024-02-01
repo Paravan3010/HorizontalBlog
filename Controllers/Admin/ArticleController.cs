@@ -19,19 +19,22 @@ namespace Horizontal.Controllers.Admin
         private ICategoryRepository _categoryRepository;
         private ICustomUrlRepository _customUrlRepository;
         private ICustomUrlProviderService _customUrlProviderService;
+        private IArticleTagRepository _articleTagRepository;
 
 
         public ArticleController(ITagRepository tagRepository,
                                  IArticleRepository articleRepository,
                                  ICategoryRepository categoryRepository,
                                  ICustomUrlRepository customUrlRepository,
-                                 ICustomUrlProviderService customUrlProviderService)
+                                 ICustomUrlProviderService customUrlProviderService,
+                                 IArticleTagRepository articleTagRepository)
         {
             _tagRepository = tagRepository;
             _articleRepository = articleRepository;
             _categoryRepository = categoryRepository;
             _customUrlRepository = customUrlRepository;
             _customUrlProviderService = customUrlProviderService;
+            _articleTagRepository = articleTagRepository;
         }
 
         [HttpGet]
@@ -71,7 +74,7 @@ namespace Horizontal.Controllers.Admin
         {
             // Check ModelState
 
-            var article = HorizontalMapper.MapArticle(model, _categoryRepository, _tagRepository, _articleRepository);
+            var article = HorizontalMapper.MapArticle(model, _categoryRepository, _tagRepository, _articleRepository, _articleTagRepository);
             var articleId = _articleRepository.CreateArticle(article);
 
             if (!String.IsNullOrEmpty(model.CustomUrl))
@@ -88,7 +91,7 @@ namespace Horizontal.Controllers.Admin
             if (article == null)
                 return NotFound();
 
-            return View("Views/Admin/Article/Detail.cshtml", HorizontalMapper.MapAdminArticleModel(article, _customUrlRepository, _articleRepository));
+            return View("Views/Admin/Article/Detail.cshtml", HorizontalMapper.MapAdminArticleModel(article, _customUrlRepository, _articleRepository, _articleTagRepository));
         }
 
         [HttpPost]
@@ -99,7 +102,7 @@ namespace Horizontal.Controllers.Admin
             if (article == null)
                 return NotFound();
 
-            article = HorizontalMapper.MapArticle(model, _categoryRepository, _tagRepository, _articleRepository, article);
+            article = HorizontalMapper.MapArticle(model, _categoryRepository, _tagRepository, _articleRepository, _articleTagRepository, article);
             _articleRepository.SaveArticle(article);
 
             var customUrlMapping = _customUrlRepository.CustomUrls.Where(x => x.OriginalUrl == $"/Article/FullArticle?articleId={article.Id}").FirstOrDefault();

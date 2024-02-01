@@ -7,6 +7,5 @@
         public bool IsPublished { get; set; } = false;
         public bool IsInTopNavbar { get; set; } = false;
         public int TopNavbarOrder { get; set; }
-        public IList<Article> Articles { get; set; } = new List<Article>();
     }
 }

@@ -13,7 +13,6 @@ namespace Horizontal.Domain.Repositories.EF
         }
 
         public IQueryable<Article> Articles => _context.Articles.Include(x => x.Category)
-                                                                .Include(x => x.Tags.Where(x => x.IsPublished))
                                                                 .Include(x => x.NextArticle)
                                                                 .Include(x => x.PreviousArticle);
 

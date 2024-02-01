@@ -49,7 +49,7 @@ namespace Horizontal.Mapping
             };
         }
 
-        public static AdminTagModel MapAdminTagModel(Tag domainModel, ICustomUrlRepository customUrlRepository)
+        public static AdminTagModel MapAdminTagModel(Tag domainModel, ICustomUrlRepository customUrlRepository, IArticleTagRepository articleTagRepository)
         {
             return new AdminTagModel()
             {
@@ -58,30 +58,27 @@ namespace Horizontal.Mapping
                 IsPublished = domainModel.IsPublished,
                 IsInTopNavbar = domainModel.IsInTopNavbar,
                 TopNavbarOrder = domainModel.TopNavbarOrder,
-                ArticleShortTitles = String.Join(", ", domainModel?.Articles.Select(x => x.ShortTitle) ?? Enumerable.Empty<string>()),
+                ArticleShortTitles = String.Join(", ", articleTagRepository.GetArticlesByTag(domainModel).Select(x => x.ShortTitle) ?? Enumerable.Empty<string>()),
                 CustomUrl = customUrlRepository.CustomUrls?
                                          .Where(x => x.OriginalUrl == $"/Category/Tag?tagName={domainModel.Name}")
                                          .FirstOrDefault()?.NewUrl ?? String.Empty
             };
         }
 
-        public static Tag MapTag(AdminTagModel viewModel, IArticleRepository articleRepository = null, Tag resultModel = null)
+        public static Tag MapTag(AdminTagModel viewModel, IArticleTagRepository articleTagRepository, IArticleRepository articleRepository = null, Tag resultModel = null)
         {
             resultModel = resultModel ?? new Tag();
             resultModel.Name = viewModel.Name;
             resultModel.IsPublished = viewModel.IsPublished;
             resultModel.IsInTopNavbar = viewModel.IsInTopNavbar;
             resultModel.TopNavbarOrder = viewModel.TopNavbarOrder;
-            if (String.IsNullOrEmpty(viewModel.ArticleShortTitles))
+            if (!String.IsNullOrEmpty(viewModel.ArticleShortTitles))
             {
-                resultModel.Articles = new List<Article>();
+                articleTagRepository.SetArticlesForTag(resultModel, articleRepository.Articles.Where(x => viewModel.ArticleShortTitles
+                                                                                    .Split(", ", StringSplitOptions.None)
+                                                                                    .Contains(x.ShortTitle)).ToArray());
             }
-            else
-            {
-                resultModel.Articles = articleRepository.Articles.Where(x => viewModel.ArticleShortTitles
-                                                                                      .Split(", ", StringSplitOptions.None)
-                                                                                      .Contains(x.ShortTitle)).ToList();
-            }
+
 
             return resultModel;
         }

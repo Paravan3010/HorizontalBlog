@@ -12,7 +12,7 @@ namespace Horizontal.Domain.Repositories.EF
             _context = context;
         }
 
-        public IQueryable<Tag> Tags => _context.Tags.Include(x => x.Articles).ThenInclude(a => a.Tags);
+        public IQueryable<Tag> Tags => _context.Tags;
 
         public int CreateTag(Tag tag)
         {

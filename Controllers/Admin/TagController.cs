@@ -16,17 +16,19 @@ namespace Horizontal.Controllers.Admin
         private IArticleRepository _articleRepository;
         private ICustomUrlRepository _customUrlRepository;
         private ICustomUrlProviderService _customUrlProviderService;
-
+        private IArticleTagRepository _articleTagRepository;
 
         public TagController(ITagRepository tagRepository,
                              IArticleRepository articleRepository,
                              ICustomUrlRepository customUrlRepository,
-                             ICustomUrlProviderService customUrlProviderService)
+                             ICustomUrlProviderService customUrlProviderService,
+                             IArticleTagRepository articleTagRepository)
         {
             _tagRepository = tagRepository;
             _articleRepository = articleRepository;
             _customUrlRepository = customUrlRepository;
             _customUrlProviderService = customUrlProviderService;
+            _articleTagRepository = articleTagRepository;
         }
 
         [HttpGet]
@@ -54,9 +56,9 @@ namespace Horizontal.Controllers.Admin
         {
             // Check ModelState
 
-            var tag = HorizontalMapper.MapTag(model);
+            var tag = HorizontalMapper.MapTag(model, _articleTagRepository);
             if (!String.IsNullOrEmpty(model.ArticleShortTitles))
-                tag.Articles = _articleRepository.Articles.Where(x => model.ArticleShortTitles.Split(", ", StringSplitOptions.None).Contains(x.ShortTitle)).ToList();
+                _articleTagRepository.SetArticlesForTag(tag, _articleRepository.Articles.Where(x => model.ArticleShortTitles.Split(", ", StringSplitOptions.None).Contains(x.ShortTitle)).ToArray());
 
             _tagRepository.CreateTag(tag);
 
@@ -74,7 +76,7 @@ namespace Horizontal.Controllers.Admin
             if (tag == null)
                 return NotFound();
 
-            return View("Views/Admin/Tag/Detail.cshtml", HorizontalMapper.MapAdminTagModel(tag, _customUrlRepository));
+            return View("Views/Admin/Tag/Detail.cshtml", HorizontalMapper.MapAdminTagModel(tag, _customUrlRepository, _articleTagRepository));
         }
 
         [HttpPost]
@@ -84,7 +86,7 @@ namespace Horizontal.Controllers.Admin
             var tag = _tagRepository.Tags.Where(x => x.Id == model.Id).FirstOrDefault();
             if (tag == null)
                 return NotFound();
-            tag = HorizontalMapper.MapTag(model, _articleRepository, tag);
+            tag = HorizontalMapper.MapTag(model, _articleTagRepository, _articleRepository, tag);
 
             _tagRepository.SaveTag(tag);
 
