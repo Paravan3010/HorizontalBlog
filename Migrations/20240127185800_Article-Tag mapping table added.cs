@@ -27,15 +27,15 @@ namespace Horizontal.Migrations
             migrationBuilder.RenameColumn(
                 name: "TagsId",
                 table: "ArticleTag",
-                newName: "Order");
+                newName: "TagId");
 
             migrationBuilder.RenameColumn(
                 name: "ArticlesId",
                 table: "ArticleTag",
-                newName: "TagId");
+                newName: "ArticleId");
 
             migrationBuilder.AddColumn<int>(
-                name: "ArticleId",
+                name: "Order",
                 table: "ArticleTag",
                 type: "int",
                 nullable: false,
@@ -87,16 +87,16 @@ namespace Horizontal.Migrations
                 table: "ArticleTag");
 
             migrationBuilder.DropColumn(
-                name: "ArticleId",
+                name: "Order",
                 table: "ArticleTag");
 
             migrationBuilder.RenameColumn(
-                name: "Order",
+                name: "TagId",
                 table: "ArticleTag",
                 newName: "TagsId");
 
             migrationBuilder.RenameColumn(
-                name: "TagId",
+                name: "ArticleId",
                 table: "ArticleTag",
                 newName: "ArticlesId");
 
