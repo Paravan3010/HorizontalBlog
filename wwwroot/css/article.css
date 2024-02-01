@@ -287,6 +287,7 @@ div.footnotes small {
     .post__end-nav-next strong {
         float: right;
         display: block;
+        text-align: end;
     }
 
     .post__end-nav-next .post__end-nav-circle {
