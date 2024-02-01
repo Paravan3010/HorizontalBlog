@@ -17,18 +17,21 @@ namespace Horizontal.Controllers
         private ITagRepository _tagRepository;
         private ICategoryRepository _categoryRepository;
         private IGeneralSettingsRepository _generalSettingsRepository;
+        private IArticleTagRepository _articleTagRepository;
 
         public HomeController(INavigationService navigationService,
                               IArticleRepository articleRepository,
                               ITagRepository tagRepository,
                               ICategoryRepository categoryRepository,
-                              IGeneralSettingsRepository generalSettingsRepository)
+                              IGeneralSettingsRepository generalSettingsRepository,
+                              IArticleTagRepository articleTagRepository)
         {
             _navigationService = navigationService;
             _articleRepository = articleRepository;
             _tagRepository = tagRepository;
             _categoryRepository = categoryRepository;
             _generalSettingsRepository = generalSettingsRepository;
+            _articleTagRepository = articleTagRepository;
         }
 
         public IActionResult Main(int page = 1)
@@ -40,7 +43,7 @@ namespace Horizontal.Controllers
                                                      .Skip((_generalSettingsRepository.GeneralSettings.FirstOrDefault()?.PageSize ?? 10) * (page - 1))
                                                      .Take(_generalSettingsRepository.GeneralSettings.FirstOrDefault()?.PageSize ?? 10))
             {
-                mainModel.Articles.Add(HorizontalMapper.MapArticleModel(article, _navigationService, _tagRepository, _categoryRepository));
+                mainModel.Articles.Add(HorizontalMapper.MapArticleModel(article, _navigationService, _tagRepository, _categoryRepository, _articleTagRepository));
             }
 
             mainModel.Page = page;

@@ -2,6 +2,7 @@
 using Horizontal.Migrations;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Xml.Linq;
 
@@ -84,7 +85,7 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/general-info-east-coast/title.jpg",
                 LongTitle = "General Information about traveling on the east coast",
                 Category = eastCoastCategory,
-                Created = DateTime.Now,
+                Created = DateTime.Today,
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true,
                 Order = 1,
@@ -97,7 +98,7 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/blue-ridge-parkway/title.jpg",
                 LongTitle = "Ride on the Blue Ridge parkway through Virginia and North Carolina",
                 Category = eastCoastCategory,
-                Created = DateTime.Now,
+                Created = DateTime.Today,
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true,
                 Order = 2
@@ -112,7 +113,7 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/usa-visa/title.jpg",
                 LongTitle = "USA visa requirements and rules",
                 Category = usaCategory,
-                Created = DateTime.Now,
+                Created = DateTime.Today,
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -126,7 +127,7 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/niagara-falls/title.jpg",
                 LongTitle = "My visit to Niagara Falls",
                 Category = canadaCategory,
-                Created = DateTime.Now,
+                Created = DateTime.Today,
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -142,7 +143,7 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/schengen/title.jpg",
                 LongTitle = "Schengen area overview",
                 Category = europeCategory,
-                Created = DateTime.Now,
+                Created = DateTime.Today,
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -156,7 +157,7 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/uk-visa/title.jpg",
                 LongTitle = "Visa to the UK",
                 Category = ukCategory,
-                Created = DateTime.Now,
+                Created = DateTime.Today,
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = false
             };
@@ -170,7 +171,7 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/castles-in-germany/title.jpg",
                 LongTitle = "The best castles and fortresses to visit in Gemany",
                 Category = germanyCategory,
-                Created = DateTime.Now,
+                Created = DateTime.Today,
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true,
                 Order = 1
@@ -183,7 +184,7 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/german-railway/title.jpg",
                 LongTitle = "Guide to using trains in Germany",
                 Category = germanyCategory,
-                Created = DateTime.Now,
+                Created = DateTime.Today,
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true,
                 Order = 2
@@ -200,7 +201,7 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/asian-visa-guide/title.jpg",
                 LongTitle = "Guide to visas in Asia",
                 Category = asiaCategory,
-                Created = DateTime.Now,
+                Created = DateTime.Today,
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -212,7 +213,7 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/vietnam/title.jpg",
                 LongTitle = "My travels through Vietnam: South to North by train, moped and bike",
                 Category = asiaCategory,
-                Created = DateTime.Now,
+                Created = DateTime.Today,
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -226,7 +227,7 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/mongolia/title.jpg",
                 LongTitle = "What not to miss when traveling through Mongolia by car",
                 Category = mongoliaCategory,
-                Created = DateTime.Now,
+                Created = DateTime.Today,
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -238,7 +239,7 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/mongolia-car-rental/title.jpg",
                 LongTitle = "Mongolia: car rental guide",
                 Category = mongoliaCategory,
-                Created = DateTime.Now,
+                Created = DateTime.Today,
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -252,7 +253,7 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/chinese-wall/title.jpg",
                 LongTitle = "How I visited the Great Wall of China from Beijing",
                 Category = chinaCategory,
-                Created = DateTime.Now,
+                Created = DateTime.Today,
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -264,7 +265,7 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/chinese-railway/title.jpg",
                 LongTitle = "How to use trains in China",
                 Category = chinaCategory,
-                Created = DateTime.Now,
+                Created = DateTime.Today,
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -278,7 +279,7 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/indian-railway/title.jpg",
                 LongTitle = "How to use trains in India",
                 Category = indiaCategory,
-                Created = DateTime.Now,
+                Created = DateTime.Today,
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -377,143 +378,103 @@ namespace Horizontal.Domain.MigrationAndSeed
 
             #region ADD ARTICLES TO TAGS: North America
             var generalInformationEastCoast = context.Articles.Where(x => x.ShortTitle == "General Information" && x.Category != null && x.Category.Name == "East Coast").First();
-            generalInformationEastCoast.Tags.Add(generalInfo);
-            generalInformationEastCoast.Tags.Add(travel);
-            generalInfo.Articles.Add(generalInformationEastCoast);
-            travel.Articles.Add(generalInformationEastCoast);
-
             var blueRidgeParkway = context.Articles.Where(x => x.ShortTitle == "Blue Ridge Parkway" && x.Category != null && x.Category.Name == "East Coast").First();
-            blueRidgeParkway.Tags.Add(travel);
-            blueRidgeParkway.Tags.Add(roads);
-            blueRidgeParkway.Tags.Add(nature);
-            blueRidgeParkway.Tags.Add(virginia);
-            blueRidgeParkway.Tags.Add(northCarolina);
-            travel.Articles.Add(blueRidgeParkway);
-            roads.Articles.Add(blueRidgeParkway);
-            nature.Articles.Add(blueRidgeParkway);
-            virginia.Articles.Add(blueRidgeParkway);
-            northCarolina.Articles.Add(blueRidgeParkway);
-
             var usaVisa = context.Articles.Where(x => x.ShortTitle == "Visa requirements" && x.Category != null && x.Category.Name == "USA").First();
-            usaVisa.Tags.Add(generalInfo);
-            usaVisa.Tags.Add(travel);
-            usaVisa.Tags.Add(visa);
-            generalInfo.Articles.Add(usaVisa);
-            travel.Articles.Add(usaVisa);
-            visa.Articles.Add(usaVisa);
-
             var niagaraFalls = context.Articles.Where(x => x.ShortTitle == "Niagara Falls" && x.Category != null && x.Category.Name == "Canada").First();
-            niagaraFalls.Tags.Add(nature);
-            niagaraFalls.Tags.Add(travel);
-            nature.Articles.Add(niagaraFalls);
-            travel.Articles.Add(niagaraFalls);
             #endregion ADD ARTICLES TO TAGS: North America
 
             #region ADD ARTICLES TO TAGS: Europe
             var schengen = context.Articles.Where(x => x.ShortTitle == "Schengen Area" && x.Category != null && x.Category.Name == "Europe").First();
-            schengen.Tags.Add(travel);
-            schengen.Tags.Add(generalInfo);
-            schengen.Tags.Add(visa);
-            travel.Articles.Add(schengen);
-            generalInfo.Articles.Add(schengen);
-            visa.Articles.Add(schengen);
-
             var ukVisa = context.Articles.Where(x => x.ShortTitle == "Visa" && x.Category != null && x.Category.Name == "UK").First();
-            ukVisa.Tags.Add(travel);
-            ukVisa.Tags.Add(generalInfo);
-            ukVisa.Tags.Add(visa);
-            travel.Articles.Add(ukVisa);
-            generalInfo.Articles.Add(ukVisa);
-            visa.Articles.Add(ukVisa);
-
             var castlesGermany = context.Articles.Where(x => x.ShortTitle == "Castles of Germany" && x.Category != null && x.Category.Name == "Germany").First();
-            castlesGermany.Tags.Add(travel);
-            castlesGermany.Tags.Add(history);
-            castlesGermany.Tags.Add(culture);
-            travel.Articles.Add(castlesGermany);
-            history.Articles.Add(castlesGermany);
-            culture.Articles.Add(castlesGermany);
-
             var germainRailway = context.Articles.Where(x => x.ShortTitle == "Deutsche Bahn Guide" && x.Category != null && x.Category.Name == "Germany").First();
-            germainRailway.Tags.Add(travel);
-            germainRailway.Tags.Add(generalInfo);
-            germainRailway.Tags.Add(trains);
-            travel.Articles.Add(germainRailway);
-            generalInfo.Articles.Add(germainRailway);
-            trains.Articles.Add(germainRailway);
             #endregion ADD ARTICLES TO TAGS: Europe
 
             #region ADD ARTICLES TO TAGS: Asia
             var asiaVisaGuide = context.Articles.Where(x => x.ShortTitle == "Visa guide" && x.Category != null && x.Category.Name == "Asia").First();
-            asiaVisaGuide.Tags.Add(travel);
-            asiaVisaGuide.Tags.Add(generalInfo);
-            asiaVisaGuide.Tags.Add(visa);
-            travel.Articles.Add(asiaVisaGuide);
-            generalInfo.Articles.Add(asiaVisaGuide);
-            visa.Articles.Add(asiaVisaGuide);
-
             var vietnam = context.Articles.Where(x => x.ShortTitle == "Vietnam travels" && x.Category != null && x.Category.Name == "Asia").First();
-            vietnam.Tags.Add(travel);
-            vietnam.Tags.Add(nature);
-            vietnam.Tags.Add(history);
-            vietnam.Tags.Add(culture);
-            travel.Articles.Add(vietnam);
-            nature.Articles.Add(vietnam);
-            history.Articles.Add(vietnam);
-            culture.Articles.Add(vietnam);
-
             var mongoliaByCar = context.Articles.Where(x => x.ShortTitle == "Mongolia by car" && x.Category != null && x.Category.Name == "Mongolia").First();
-            mongoliaByCar.Tags.Add(travel);
-            mongoliaByCar.Tags.Add(roads);
-            mongoliaByCar.Tags.Add(nature);
-            mongoliaByCar.Tags.Add(culture);
-            mongoliaByCar.Tags.Add(history);
-            travel.Articles.Add(mongoliaByCar);
-            roads.Articles.Add(mongoliaByCar);
-            nature.Articles.Add(mongoliaByCar);
-            culture.Articles.Add(mongoliaByCar);
-            history.Articles.Add(mongoliaByCar);
-
             var mongoliaCarRentalGuide = context.Articles.Where(x => x.ShortTitle == "Car rental guide" && x.Category != null && x.Category.Name == "Mongolia").First();
-            mongoliaCarRentalGuide.Tags.Add(travel);
-            mongoliaCarRentalGuide.Tags.Add(roads);
-            mongoliaCarRentalGuide.Tags.Add(generalInfo);
-            travel.Articles.Add(mongoliaCarRentalGuide);
-            roads.Articles.Add(mongoliaCarRentalGuide);
-            generalInfo.Articles.Add(mongoliaCarRentalGuide);
-
             var chineseWall = context.Articles.Where(x => x.ShortTitle == "Chinese wall from Beijing" && x.Category != null && x.Category.Name == "China").First();
-            chineseWall.Tags.Add(travel);
-            chineseWall.Tags.Add(history);
-            chineseWall.Tags.Add(culture);
-            chineseWall.Tags.Add(nature);
-            chineseWall.Tags.Add(generalInfo);
-            travel.Articles.Add(chineseWall);
-            history.Articles.Add(chineseWall);
-            culture.Articles.Add(chineseWall);
-            nature.Articles.Add(chineseWall);
-            generalInfo.Articles.Add(chineseWall);
-
             var trainTravelChina = context.Articles.Where(x => x.ShortTitle == "Guide to train travel" && x.Category != null && x.Category.Name == "China").First();
-            trainTravelChina.Tags.Add(travel);
-            trainTravelChina.Tags.Add(generalInfo);
-            trainTravelChina.Tags.Add(trains);
-            trainTravelChina.Tags.Add(visa);
-            travel.Articles.Add(trainTravelChina);
-            generalInfo.Articles.Add(trainTravelChina);
-            trains.Articles.Add(trainTravelChina);
-            visa.Articles.Add(trainTravelChina);
-
             var trainTravelIndia = context.Articles.Where(x => x.ShortTitle == "Guide to train travel" && x.Category != null && x.Category.Name == "India").First();
-            trainTravelIndia.Tags.Add(travel);
-            trainTravelIndia.Tags.Add(generalInfo);
-            trainTravelIndia.Tags.Add(trains);
-            trainTravelIndia.Tags.Add(visa);
-            travel.Articles.Add(trainTravelIndia);
-            generalInfo.Articles.Add(trainTravelIndia);
-            trains.Articles.Add(trainTravelIndia);
-            visa.Articles.Add(trainTravelIndia);
             #endregion ADD ARTICLES TO TAGS: Asia
+
+            context.SaveChanges();
+
+            // Article-Tag mappings must be saved after both Articles and Tags since they already must have IDs
+            #region ARTICLE-TAG MAPPINGS - North-America
+            context.ArticleTags.Add(new ArticleTag() { Article = generalInformationEastCoast, Tag = generalInfo, ArticleId = generalInformationEastCoast.Id, TagId = generalInfo.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = generalInformationEastCoast, Tag = travel, ArticleId = generalInformationEastCoast.Id, TagId = travel.Id });
+
+            context.ArticleTags.Add(new ArticleTag() { Article = blueRidgeParkway, Tag = travel, ArticleId = blueRidgeParkway.Id, TagId = travel.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = blueRidgeParkway, Tag = roads, ArticleId = blueRidgeParkway.Id, TagId = roads.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = blueRidgeParkway, Tag = nature, ArticleId = blueRidgeParkway.Id, TagId = nature.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = blueRidgeParkway, Tag = virginia, ArticleId = blueRidgeParkway.Id, TagId = virginia.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = blueRidgeParkway, Tag = northCarolina, ArticleId = blueRidgeParkway.Id, TagId = northCarolina.Id });
+
+            context.ArticleTags.Add(new ArticleTag() { Article = usaVisa, Tag = generalInfo, ArticleId = usaVisa.Id, TagId = generalInfo.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = usaVisa, Tag = travel, ArticleId = usaVisa.Id, TagId = travel.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = usaVisa, Tag = visa, ArticleId = usaVisa.Id, TagId = visa.Id });
+
+            context.ArticleTags.Add(new ArticleTag() { Article = niagaraFalls, Tag = nature, ArticleId = niagaraFalls.Id, TagId = nature.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = niagaraFalls, Tag = travel, ArticleId = niagaraFalls.Id, TagId = travel.Id });
+            #endregion ARTICLE-TAG MAPPINGS - North-America
+
+            #region ARTICLE-TAG MAPPINGS - Europe
+            context.ArticleTags.Add(new ArticleTag() { Article = schengen, Tag = travel });
+            context.ArticleTags.Add(new ArticleTag() { Article = schengen, Tag = generalInfo });
+            context.ArticleTags.Add(new ArticleTag() { Article = schengen, Tag = visa });
+
+            context.ArticleTags.Add(new ArticleTag() { Article = ukVisa, Tag = travel });
+            context.ArticleTags.Add(new ArticleTag() { Article = ukVisa, Tag = generalInfo });
+            context.ArticleTags.Add(new ArticleTag() { Article = ukVisa, Tag = visa });
+
+            context.ArticleTags.Add(new ArticleTag() { Article = castlesGermany, Tag = travel });
+            context.ArticleTags.Add(new ArticleTag() { Article = castlesGermany, Tag = history });
+            context.ArticleTags.Add(new ArticleTag() { Article = castlesGermany, Tag = culture });
+
+            context.ArticleTags.Add(new ArticleTag() { Article = germainRailway, Tag = travel });
+            context.ArticleTags.Add(new ArticleTag() { Article = germainRailway, Tag = generalInfo });
+            context.ArticleTags.Add(new ArticleTag() { Article = germainRailway, Tag = trains });
+            #endregion ARTICLE-TAG MAPPINGS - Europe
+
+            #region ARTICLE-TAG MAPPINGS - Asia
+            context.ArticleTags.Add(new ArticleTag() { Article = asiaVisaGuide, Tag = travel, ArticleId = asiaVisaGuide.Id, TagId = travel.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = asiaVisaGuide, Tag = generalInfo, ArticleId = asiaVisaGuide.Id, TagId = generalInfo.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = asiaVisaGuide, Tag = visa, ArticleId = asiaVisaGuide.Id, TagId = visa.Id });
+
+            context.ArticleTags.Add(new ArticleTag() { Article = vietnam, Tag = travel, ArticleId = vietnam.Id, TagId = travel.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = vietnam, Tag = nature, ArticleId = vietnam.Id, TagId = nature.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = vietnam, Tag = history, ArticleId = vietnam.Id, TagId = history.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = vietnam, Tag = culture, ArticleId = vietnam.Id, TagId = culture.Id });
+
+            context.ArticleTags.Add(new ArticleTag() { Article = mongoliaByCar, Tag = travel, ArticleId = mongoliaByCar.Id, TagId = travel.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = mongoliaByCar, Tag = roads, ArticleId = mongoliaByCar.Id, TagId = roads.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = mongoliaByCar, Tag = nature, ArticleId = mongoliaByCar.Id, TagId = nature.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = mongoliaByCar, Tag = culture, ArticleId = mongoliaByCar.Id, TagId = culture.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = mongoliaByCar, Tag = history, ArticleId = mongoliaByCar.Id, TagId = history.Id });
+
+            context.ArticleTags.Add(new ArticleTag() { Article = mongoliaCarRentalGuide, Tag = travel, ArticleId = mongoliaCarRentalGuide.Id, TagId = travel.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = mongoliaCarRentalGuide, Tag = roads, ArticleId = mongoliaCarRentalGuide.Id, TagId = roads.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = mongoliaCarRentalGuide, Tag = generalInfo, ArticleId = mongoliaCarRentalGuide.Id, TagId = generalInfo.Id });
+
+            context.ArticleTags.Add(new ArticleTag() { Article = chineseWall, Tag = travel, ArticleId = chineseWall.Id, TagId = travel.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = chineseWall, Tag = history, ArticleId = chineseWall.Id, TagId = history.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = chineseWall, Tag = culture, ArticleId = chineseWall.Id, TagId = culture.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = chineseWall, Tag = nature, ArticleId = chineseWall.Id, TagId = nature.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = chineseWall, Tag = generalInfo, ArticleId = chineseWall.Id, TagId = generalInfo.Id });
+
+            context.ArticleTags.Add(new ArticleTag() { Article = trainTravelChina, Tag = travel, ArticleId = trainTravelChina.Id, TagId = travel.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = trainTravelChina, Tag = generalInfo, ArticleId = trainTravelChina.Id, TagId = generalInfo.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = trainTravelChina, Tag = trains, ArticleId = trainTravelChina.Id, TagId = trains.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = trainTravelChina, Tag = visa, ArticleId = trainTravelChina.Id, TagId = visa.Id });
+
+            context.ArticleTags.Add(new ArticleTag() { Article = trainTravelIndia, Tag = travel, ArticleId = trainTravelIndia.Id, TagId = travel.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = trainTravelIndia, Tag = generalInfo, ArticleId = trainTravelIndia.Id, TagId = generalInfo.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = trainTravelIndia, Tag = trains, ArticleId = trainTravelIndia.Id, TagId = trains.Id });
+            context.ArticleTags.Add(new ArticleTag() { Article = trainTravelIndia, Tag = visa, ArticleId = trainTravelIndia.Id, TagId = visa.Id });
+            #endregion ARTICLE-TAG MAPPINGS - Asia
 
             context.SaveChanges();
         }

@@ -4,6 +4,7 @@ using Horizontal.Models;
 using Horizontal.Services;
 using Horizontal.Models.Admin;
 using Horizontal.Domain.Repositories.EF;
+using Horizontal.Services.Implementation;
 
 namespace Horizontal.Mapping
 {
@@ -11,7 +12,8 @@ namespace Horizontal.Mapping
     {
         #region Admin
         public static Article MapArticle(AdminArticleModel viewModel, ICategoryRepository categoryRepository,
-                                         ITagRepository tagRepository, IArticleRepository articleRepository, Article resultModel = null)
+                                         ITagRepository tagRepository, IArticleRepository articleRepository,
+                                         IArticleTagRepository articleTagRepository, Article resultModel = null)
         {
             resultModel = resultModel ?? new Article();
             resultModel.Order = viewModel.Order;
@@ -28,30 +30,28 @@ namespace Horizontal.Mapping
             resultModel.PreviousArticle = articleRepository.Articles.Where(x => x.Id == viewModel.PreviousArticleId).FirstOrDefault();
             resultModel.NextArticle = articleRepository.Articles.Where(x => x.Id == viewModel.NextArticleId).FirstOrDefault();
 
-            foreach (var tagName in viewModel.Tags?.Split(", ") ?? Enumerable.Empty<string>())
-            {
-                if (resultModel.Tags.Any(x => x.Name == tagName))
-                    continue;
-                resultModel.Tags.Add(tagRepository.Tags.Where(x => x.Name == tagName).First());
-            }
-            foreach (var tag in resultModel.Tags)
+            foreach (var tag in articleTagRepository.GetTagsByArticle(resultModel))
             {
                 if (viewModel.Tags.Split(", ").Contains(tag.Name))
                     continue;
-                resultModel.Tags.Remove(tag);
+                articleTagRepository.RemoveTagFromArticle(resultModel, tag);
             }
+            int tagOrder = 1;
+            foreach (var tagName in viewModel.Tags?.Split(", ") ?? Enumerable.Empty<string>())
+                articleTagRepository.UpsertTagForArticle(resultModel, tagRepository.Tags.Where(x => x.Name == tagName).First(), tagOrder++);
 
             return resultModel;
         }
 
-        public static ArticleModel MapArticleModel(Article domainModel, INavigationService navService, ITagRepository tagRepo, ICategoryRepository categoryRepo)
+        public static ArticleModel MapArticleModel(Article domainModel, INavigationService navService, ITagRepository tagRepo,
+                                                   ICategoryRepository categoryRepo, IArticleTagRepository articleTagRepository)
         {
             return new ArticleModel(navService, tagRepo, categoryRepo)
             {
                 Id = domainModel.Id,
                 PreviewPhotoPath = String.IsNullOrEmpty(domainModel.PreviewPhotoPath) ? "/img/development/dummy_1250x500.png" : domainModel.PreviewPhotoPath,
                 ArticleHtmlPath = domainModel.FilePath ?? String.Empty,
-                Tags = domainModel.Tags.Select(x => x.Name).ToList(),
+                Tags = articleTagRepository.GetTagsByArticle(domainModel).Select(x => x.Name).ToList(),
                 Title = domainModel.LongTitle ?? domainModel.ShortTitle,
                 Published = domainModel.Created,
                 LastUpdated = domainModel.LastUpdated,
@@ -85,7 +85,7 @@ namespace Horizontal.Mapping
         }
 
         public static AdminArticleModel MapAdminArticleModel(Article domainModel, ICustomUrlRepository customUrlRepository,
-                                                             IArticleRepository articleRepository)
+                                                             IArticleRepository articleRepository, IArticleTagRepository articleTagRepository)
         {
             var result = new AdminArticleModel()
             {
@@ -96,7 +96,7 @@ namespace Horizontal.Mapping
                 LongTitle = domainModel.LongTitle,
                 TextBeginning = domainModel.TextBeginning,
                 Order = domainModel.Order,
-                Tags = String.Join(", ", domainModel.Tags?.Select(x => x.Name) ?? Enumerable.Empty<string>()),
+                Tags = String.Join(", ", articleTagRepository.GetTagsByArticle(domainModel).Select(x => x.Name) ?? Enumerable.Empty<string>()),
                 FilePath = domainModel.FilePath,
                 PreviewPhotoPath = domainModel.PreviewPhotoPath,
                 Published = domainModel.Created.ToString("d. M. yyyy"),

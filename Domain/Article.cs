@@ -10,9 +10,8 @@
         public string LongTitle { get; set; }
         public string TextBeginning { get; set; } = String.Empty;
         public Category Category { get; set; }
-        public IList<Tag> Tags { get; set; } = new List<Tag>();
-        public DateTime Created { get; set; } = DateTime.Now;
-        public DateTime LastUpdated { get; set; } = DateTime.Now;
+        public DateTime Created { get; set; } = DateTime.Today;
+        public DateTime LastUpdated { get; set; } = DateTime.Today;
         public bool IsPublished { get; set; } = false;
         public string GalleryUrl { get; set; } = String.Empty;
         public int NumberOfVisits { get; set; }
