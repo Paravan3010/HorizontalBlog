@@ -46,9 +46,13 @@ namespace Horizontal.Controllers
                 mainModel.Articles.Add(HorizontalMapper.MapArticleModel(article, _navigationService, _tagRepository, _categoryRepository, _articleTagRepository));
             }
 
+            var settings = _generalSettingsRepository.GeneralSettings.FirstOrDefault();
+
             mainModel.Page = page;
-            mainModel.TotalNumberOfPages = (int)Math.Ceiling(publishedArticles.Count() / (double)(_generalSettingsRepository.GeneralSettings.FirstOrDefault()?.PageSize ?? 10));
+            mainModel.TotalNumberOfPages = (int)Math.Ceiling(publishedArticles.Count() / (double)(settings?.PageSize ?? 10));
             mainModel.ActionName = nameof(Main);
+            mainModel.PageTitle = settings?.MainPageTitle ?? String.Empty;
+            mainModel.PageDescription = settings?.MainPageDescription ?? String.Empty;
 
             return View(mainModel);
         }

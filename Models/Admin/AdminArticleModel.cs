@@ -7,6 +7,8 @@
         public string ShortTitle { get; set; } = String.Empty;
         public string LongTitle { get; set; } = String.Empty;
         public string TextBeginning { get; set; } = String.Empty;
+        public string PageTitle { get; set; } = String.Empty;
+        public string PageDescription { get; set; } = String.Empty;
         public int Order { get; set; }
         public string Tags { get; set; } = String.Empty;
         public string FilePath { get; set; } = String.Empty;

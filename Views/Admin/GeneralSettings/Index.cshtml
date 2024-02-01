@@ -28,6 +28,17 @@
                 <label for="PageSize">Velikost stránky</label>
                 <input type="number" name="PageSize" class="form-control" value="@Model.PageSize" />
             </div>
+
+            <div class="form-group">
+                <label for="MainPageTitle">Titulek hlavní stránky (zobrazený mimo jiné v záložce prohlížeče)</label>
+                <input name="MainPageTitle" class="form-control" value="@Model.MainPageTitle" />
+            </div>
+
+            <div class="form-group">
+                <label for="MainPageDescription">Stručný popis webu (zobrazený např. v náhledu hlavní stránky z internetového vyhledávače)</label>
+                <textarea name="MainPageDescription" class="form-control" rows="6" oninput="updateCharacterCount(this, 'page-description-char-count')">@Model.MainPageDescription</textarea>
+                <span id="page-description-char-count" style="float:right">Znaků: @(Model.MainPageDescription?.Length ?? 0)</span>
+            </div>
         </fieldset>
 
         <button type="submit" class="btn btn-success mb-2" style="margin-top:10px">Uložit změny</button>
