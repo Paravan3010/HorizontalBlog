@@ -3,7 +3,6 @@
 body {
     background-color: white;
     overflow-y: scroll;
-    scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
 }
 
