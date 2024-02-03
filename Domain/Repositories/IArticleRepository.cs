@@ -4,7 +4,7 @@
     {
         IQueryable<Article> Articles { get; }
 
-        int CreateArticle(Article article);
+        int UpsertArticle(Article article);
         void SaveArticle(Article article);
         void DeleteArticle(Article article);
         void IncreaseVisitCount(long articleId);

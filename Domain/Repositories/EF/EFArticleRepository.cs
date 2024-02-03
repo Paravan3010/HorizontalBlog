@@ -16,9 +16,10 @@ namespace Horizontal.Domain.Repositories.EF
                                                                 .Include(x => x.NextArticle)
                                                                 .Include(x => x.PreviousArticle);
 
-        public int CreateArticle(Article article)
+        public int UpsertArticle(Article article)
         {
-            _context.Add(article);
+            if (article.Id == 0)
+                _context.Add(article);
             _context.SaveChanges();
 
             return article.Id;

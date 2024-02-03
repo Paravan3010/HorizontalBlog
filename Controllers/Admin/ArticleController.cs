@@ -75,7 +75,7 @@ namespace Horizontal.Controllers.Admin
             // Check ModelState
 
             var article = HorizontalMapper.MapArticle(model, _categoryRepository, _tagRepository, _articleRepository, _articleTagRepository);
-            var articleId = _articleRepository.CreateArticle(article);
+            var articleId = _articleRepository.UpsertArticle(article);
 
             if (!String.IsNullOrEmpty(model.CustomUrl))
                 _customUrlRepository.CreateMapping(new CustomUrl { NewUrl = model.CustomUrl, OriginalUrl = $"/Article/FullArticle?articleId={articleId}" });
