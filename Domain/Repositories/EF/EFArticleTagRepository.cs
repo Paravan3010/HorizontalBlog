@@ -26,11 +26,23 @@ namespace Horizontal.Domain.Repositories.EF
                 return;
             }
 
+            // Both tag and article must be saved before setting article-tag mapping
+            if (article.Id == 0)
+            {
+                _context.Add(article);
+                _context.SaveChanges();
+            }
+            if (tag.Id == 0)
+            {
+                _context.Add(tag);
+                _context.SaveChanges();
+            }
+
             var newArticleTag = new ArticleTag()
             {
                 Article = article,
                 Tag = tag,
-                Order = ArticleTags.Where(x => x.Article.Id == article.Id).Max(x => x.Order) + 1
+                Order = order ?? ArticleTags.Where(x => x.Article.Id == article.Id).Max(x => x.Order) + 1
             };
             _context.Add(newArticleTag);
             _context.SaveChanges();
