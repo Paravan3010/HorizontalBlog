@@ -21,7 +21,11 @@
         article.full-article h3 + p,
         article.full-article h4 + p,
         article.full-article h5 + p,
-        article.full-article h6 + p {
+        article.full-article h6 + p,
+        article.full-article h3 + .height-profile + p,
+        article.full-article h4 + .height-profile + p,
+        article.full-article h5 + .height-profile + p,
+        article.full-article h6 + .height-profile + p {
             margin-top: 5px;
         }
 

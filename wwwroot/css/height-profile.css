@@ -1,0 +1,36 @@
+﻿.height-profile {
+    text-align: center;
+    font-family: 'Montserrat';
+    color: #808080;
+}
+
+.height-profile > div {
+    display: inline-block;
+}
+
+.height-profile > .height-profile__up {
+    padding: 0px 10px;
+}
+
+    .height-profile > .height-profile__distance img,
+    .height-profile > .height-profile__up img,
+    .height-profile > .height-profile__down img {
+        width: 25px;
+        border-radius: 0px;
+        vertical-align: middle;
+    }
+
+    .height-profile > .height-profile__distance span,
+    .height-profile > .height-profile__up span,
+    .height-profile > .height-profile__down span {
+        vertical-align: middle;
+    }
+
+    .height-profile > .height-profile__distance img {
+        margin-right: 2px;
+    }
+
+    .height-profile > .height-profile__up img,
+    .height-profile > .height-profile__down img {
+        margin-right: -2px;
+    }
