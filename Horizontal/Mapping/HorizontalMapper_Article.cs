@@ -59,6 +59,7 @@ namespace Horizontal.Mapping
             resultModel.GalleryUrl = viewModel.GalleryUrl;
             resultModel.PreviousArticle = articleRepository.Articles.Where(x => x.Id == viewModel.PreviousArticleId).FirstOrDefault();
             resultModel.NextArticle = articleRepository.Articles.Where(x => x.Id == viewModel.NextArticleId).FirstOrDefault();
+            resultModel.NumberOfVisits = viewModel.NumberOfVisits;
 
             foreach (var tag in articleTagRepository.GetTagsByArticle(resultModel))
             {
@@ -82,7 +83,8 @@ namespace Horizontal.Mapping
                 IsPublished = domainModel.IsPublished,
                 CustomUrl = customUrlProvider.HasCustomUrl("Article", "FullArticle", (key: "articleId", value: domainModel.Id.ToString())) ?
                                 customUrlProvider.GetCustomUrl("Article", "FullArticle", (key: "articleId", value: domainModel.Id.ToString())) :
-                                String.Empty
+                                String.Empty,
+                NumberOfVisits = domainModel.NumberOfVisits
             };
         }
 
@@ -109,6 +111,7 @@ namespace Horizontal.Mapping
                 GalleryUrl = domainModel.GalleryUrl,
                 NextArticleId = domainModel.NextArticle?.Id,
                 PreviousArticleId = domainModel.PreviousArticle?.Id,
+                NumberOfVisits = domainModel.NumberOfVisits,
             };
             foreach (var article in articleRepository.Articles.Where(x => x.Id != domainModel.Id))
             {

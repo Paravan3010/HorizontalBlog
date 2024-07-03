@@ -19,6 +19,7 @@
         public string GalleryUrl { get; set; } = String.Empty;
         public bool IsPublished { get; set; }
         public int? NextArticleId { get; set; }
+        public int NumberOfVisits { get; set; }
         public int? PreviousArticleId { get; set; }
         public List<ArticleDropdownModel> AllArticles = new List<ArticleDropdownModel>();
     }
