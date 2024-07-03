@@ -6,5 +6,6 @@
         public string ShortTitle { get; set; }
         public bool IsPublished { get; set; }
         public string CustomUrl { get; set; }
+        public int NumberOfVisits { get; set; }
     }
 }

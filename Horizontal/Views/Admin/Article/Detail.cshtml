@@ -1,4 +1,5 @@
-﻿@using Horizontal.Models.Admin;
+﻿@using System.Globalization;
+@using Horizontal.Models.Admin;
 
 @model AdminArticleModel
 @{
@@ -59,6 +60,11 @@
         <div class="form-group">
             <label for="LastUpdated">Datum poslední aktualizace</label>
             <input name="LastUpdated" class="form-control" placeholder="23. 9. 2023" value="@Model.LastUpdated" />
+        </div>
+        <div class="form-group">
+            <label for="NumberOfVisits">Počet zobrazení</label>
+            <input name="NumberOfVisits" class="form-control" placeholder="23. 9. 2023" 
+                   value="@Model.NumberOfVisits.ToString("N0", new NumberFormatInfo() { NumberGroupSeparator = " "})" />
         </div>
         <div class="form-group">
             <label for="CategoryName">Kategorie</label>

@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Components.Routing
+@using System.Globalization;
 @using Horizontal.Models.Admin
 
 @model IList<ArticlePreviewModel>
@@ -22,6 +23,7 @@
         <tr>
             <th>Krátký titulek</th>
             <th style="text-align:center; width:140px">Vypublikováno</th>
+            <th style="text-align:center; width:110px">Zobrazení</th>
             <th>URL</th>
             <th style="width:200px">Akce</th>
         </tr>
@@ -44,6 +46,9 @@
                         {
                             <i class="fa-solid fa-square-xmark fa-2xl" style="color: #df1111;"></i>
                         }
+                    </td>
+                    <td style="text-align: right">
+                        @article.NumberOfVisits.ToString("N0", new NumberFormatInfo() { NumberGroupSeparator = " "})
                     </td>
                     <td>
                         @article.CustomUrl
