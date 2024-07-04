@@ -5,7 +5,7 @@
     margin-right: 10px;
 }
 
-    article.full-article p + h3, figure + h3 {
+    article.full-article p + h3, figure + h2, figure + h3, figure + h4, figure + h5, figure + h6 {
         margin-top: 16px;
     }
 
