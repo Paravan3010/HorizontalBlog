@@ -104,6 +104,27 @@
     font-size: 0.9em;
 }
 
+/* sources list */
+article.full-article ol.sources {
+    counter-reset: item;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+    article.full-article ol.sources li {
+        display: block;
+        margin-bottom: .5em;
+        margin-left: 1.25em;
+    }
+
+        article.full-article ol.sources li::before {
+            display: inline-block;
+            content: "[" counter(item) "]";
+            counter-increment: item;
+            width: 2em;
+            margin-left: -2em;
+        }
+
 /* table */
 .table {
     overflow-x: auto;
@@ -306,18 +327,21 @@ div.footnotes small {
 
 @media (max-width: 375px) {
     .post__end-nav-circle {
-        display:none;
+        display: none;
     }
+
     .post__end-nav-previous {
         grid-template-areas: "previous"
             "title";
         grid-template-columns: none;
     }
+
     .post__end-nav-next {
         grid-template-areas: "previous"
             "title";
         grid-template-columns: none;
     }
+
     .full-article__footing-nav {
         margin-top: 20px;
     }
