@@ -105,25 +105,9 @@
 }
 
 /* sources list */
-article.full-article ol.sources {
-    counter-reset: item;
-    margin-left: 0;
-    padding-left: 0;
+article.full-article ol.sources li::marker {
+    content: "[" counter(list-item) "]  ";
 }
-
-    article.full-article ol.sources li {
-        display: block;
-        margin-bottom: .5em;
-        margin-left: 1.25em;
-    }
-
-        article.full-article ol.sources li::before {
-            display: inline-block;
-            content: "[" counter(item) "]";
-            counter-increment: item;
-            width: 2em;
-            margin-left: -2em;
-        }
 
 /* table */
 .table {
