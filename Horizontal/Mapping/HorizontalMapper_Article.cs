@@ -56,7 +56,7 @@ namespace Horizontal.Mapping
             resultModel.Created = DateTime.Parse(viewModel.Published);
             resultModel.LastUpdated = DateTime.Parse(viewModel.LastUpdated);
             resultModel.IsPublished = viewModel.IsPublished;
-            resultModel.GalleryUrl = viewModel.GalleryUrl;
+            resultModel.GalleryUrl = viewModel.GalleryUrl ?? String.Empty;
             resultModel.PreviousArticle = articleRepository.Articles.Where(x => x.Id == viewModel.PreviousArticleId).FirstOrDefault();
             resultModel.NextArticle = articleRepository.Articles.Where(x => x.Id == viewModel.NextArticleId).FirstOrDefault();
             resultModel.NumberOfVisits = viewModel.NumberOfVisits;
