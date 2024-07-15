@@ -26,14 +26,14 @@ namespace Horizontal.Mapping
                 GalleryExists = !String.IsNullOrEmpty(domainModel.GalleryUrl),
                 GalleryUrl = domainModel.GalleryUrl,
                 PreviousArticleId = domainModel.PreviousArticle?.Id,
-                PreviousArticleShortName = String.IsNullOrEmpty(domainModel.PreviousArticle?.LongTitle) ?
+                PreviousArticleShortName = (String.IsNullOrEmpty(domainModel.PreviousArticle?.LongTitle) ?
                                                 domainModel.PreviousArticle?.ShortTitle :
-                                                domainModel.PreviousArticle?.LongTitle,
+                                                domainModel.PreviousArticle?.LongTitle) ?? String.Empty,
                 IsPreviousArticlePublished = domainModel.PreviousArticle?.IsPublished ?? false,
                 NextArticleId = domainModel.NextArticle?.Id,
-                NextArticleShortName = String.IsNullOrEmpty(domainModel.NextArticle?.LongTitle) ?
+                NextArticleShortName = (String.IsNullOrEmpty(domainModel.NextArticle?.LongTitle) ?
                                             domainModel.NextArticle?.ShortTitle :
-                                            domainModel.NextArticle?.LongTitle,
+                                            domainModel.NextArticle?.LongTitle) ?? String.Empty,
                 IsNextArticlePublished = domainModel.NextArticle?.IsPublished ?? false,
             };
         }
@@ -45,11 +45,11 @@ namespace Horizontal.Mapping
         {
             resultModel = resultModel ?? new Article();
             resultModel.Order = viewModel.Order;
-            resultModel.FilePath = viewModel.FilePath;
-            resultModel.PreviewPhotoPath = viewModel.PreviewPhotoPath;
-            resultModel.ShortTitle = viewModel.ShortTitle;
-            resultModel.LongTitle = viewModel.LongTitle;
-            resultModel.TextBeginning = viewModel.TextBeginning;
+            resultModel.FilePath = viewModel.FilePath ?? String.Empty;
+            resultModel.PreviewPhotoPath = viewModel.PreviewPhotoPath ?? String.Empty;
+            resultModel.ShortTitle = viewModel.ShortTitle ?? String.Empty;
+            resultModel.LongTitle = viewModel.LongTitle ?? String.Empty;
+            resultModel.TextBeginning = viewModel.TextBeginning ?? String.Empty;
             resultModel.PageTitle = viewModel.PageTitle ?? String.Empty;
             resultModel.PageDescription = viewModel.PageDescription ?? String.Empty;
             resultModel.Category = categoryRepository.Categories.Where(x => x.Name == viewModel.CategoryName).FirstOrDefault();
