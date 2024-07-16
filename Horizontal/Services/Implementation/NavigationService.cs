@@ -10,12 +10,15 @@ namespace Horizontal.Services.Implementation
     {
         private static readonly object actualizationLock = new object();
 
-        private IList<CategoryNavigationModel> _categoryNavigation;
-        private IServiceProvider _services { get; }
+        private IList<CategoryNavigationModel>? _categoryNavigation;
 
-        public NavigationService(IServiceProvider services)
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IArticleRepository _articleRepository;
+
+        public NavigationService(ICategoryRepository categoryRepository, IArticleRepository articleRepository)
         {
-            _services = services;
+            _categoryRepository = categoryRepository;
+            _articleRepository = articleRepository;
         }
 
 
@@ -35,12 +38,8 @@ namespace Horizontal.Services.Implementation
             {
                 _categoryNavigation = new List<CategoryNavigationModel>();
 
-                // The NavigationService is used as a singleton; therefore, to access DB data, a scope must be created.
-                using var scope = _services.CreateScope();
-                var scopedCategoryRepository = scope.ServiceProvider.GetRequiredService<ICategoryRepository>();
-                var scopedArticleRepository = scope.ServiceProvider.GetRequiredService<IArticleRepository>();
-                var categories = scopedCategoryRepository.Categories.Where(x => x.IsPublished);
-                var articles = scopedArticleRepository.Articles.Where(x => x.IsPublished);
+                var categories = _categoryRepository.Categories.Where(x => x.IsPublished);
+                var articles = _articleRepository.Articles.Where(x => x.IsPublished);
 
                 // Recursively add all categories and articles
                 foreach (var topCategory in categories.Where(x => x.ParentCategory == null).OrderBy(o => o.Name))

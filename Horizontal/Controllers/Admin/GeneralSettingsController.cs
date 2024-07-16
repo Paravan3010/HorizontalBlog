@@ -44,14 +44,5 @@ namespace Horizontal.Controllers.Admin
 
             return RedirectToAction("Index");
         }
-
-        [HttpGet]
-        [Route("ActualizeLeftNavBar")]
-        public IActionResult ActualizeLeftNavBar()
-        {
-            _navigationService.ActualizeCategoryNavigation();
-
-            return RedirectToAction("Index");
-        }
     }
 }

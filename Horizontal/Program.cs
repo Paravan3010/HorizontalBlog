@@ -30,7 +30,7 @@ namespace Horizontal
             builder.Services.AddScoped<IGeneralSettingsRepository, EFGeneralSettingsRepository>();
             builder.Services.AddScoped<ICustomUrlProviderService, CustomUrlProviderService>();
             builder.Services.AddScoped<IArticleTagRepository, EFArticleTagRepository>();
-            builder.Services.AddSingleton<INavigationService, NavigationService>();
+            builder.Services.AddScoped<INavigationService, NavigationService>();
 
             // Identity
             builder.Services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(builder.Configuration["ConnectionStrings:MainConnection"]));
