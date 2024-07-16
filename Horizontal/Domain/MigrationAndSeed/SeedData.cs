@@ -22,6 +22,11 @@ namespace Horizontal.Domain.MigrationAndSeed
             if (context.Categories.Any() || context.Articles.Any() || context.Tags.Any() || context.CustomUrls.Any())
                 return;
 
+            Populate(context);
+        }
+
+        public static void Populate(HorizontalDbContext context)
+        {
             PopulateCategories(context);
             PopulateArticles(context);
             PopulateTags(context);
