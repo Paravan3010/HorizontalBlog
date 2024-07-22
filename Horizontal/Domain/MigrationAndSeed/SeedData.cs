@@ -90,7 +90,8 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/general-info-east-coast/title.jpg",
                 LongTitle = "General Information about traveling on the east coast",
                 Category = eastCoastCategory,
-                Created = DateTime.Today,
+                Created = new DateTime(2023, 11, 8),
+                LastUpdated = new DateTime(2023, 11, 8),
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true,
                 Order = 1,
@@ -103,7 +104,8 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/blue-ridge-parkway/title.jpg",
                 LongTitle = "Ride on the Blue Ridge parkway through Virginia and North Carolina",
                 Category = eastCoastCategory,
-                Created = DateTime.Today,
+                Created = new DateTime(2023, 11, 15),
+                LastUpdated = new DateTime(2023, 11, 15),
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true,
                 Order = 2
@@ -118,7 +120,8 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/usa-visa/title.jpg",
                 LongTitle = "USA visa requirements and rules",
                 Category = usaCategory,
-                Created = DateTime.Today,
+                Created = new DateTime(2023, 11, 18),
+                LastUpdated = new DateTime(2023, 11, 18),
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -132,7 +135,8 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/niagara-falls/title.jpg",
                 LongTitle = "My visit to Niagara Falls",
                 Category = canadaCategory,
-                Created = DateTime.Today,
+                Created = new DateTime(2023, 11, 25),
+                LastUpdated = new DateTime(2023, 11, 27),
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -148,7 +152,8 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/schengen/title.jpg",
                 LongTitle = "Schengen area overview",
                 Category = europeCategory,
-                Created = DateTime.Today,
+                Created = new DateTime(2023, 12, 1),
+                LastUpdated = new DateTime(2023, 12, 1),
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -162,7 +167,8 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/uk-visa/title.jpg",
                 LongTitle = "Visa to the UK",
                 Category = ukCategory,
-                Created = DateTime.Today,
+                Created = new DateTime(2023, 12, 3),
+                LastUpdated = new DateTime(2023, 12, 4),
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = false
             };
@@ -176,7 +182,8 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/castles-in-germany/title.jpg",
                 LongTitle = "The best castles and fortresses to visit in Gemany",
                 Category = germanyCategory,
-                Created = DateTime.Today,
+                Created = new DateTime(2023, 12, 8),
+                LastUpdated = new DateTime(2023, 12, 8),
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true,
                 Order = 1
@@ -189,7 +196,8 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/german-railway/title.jpg",
                 LongTitle = "Guide to using trains in Germany",
                 Category = germanyCategory,
-                Created = DateTime.Today,
+                Created = new DateTime(2023, 12, 8),
+                LastUpdated = new DateTime(2024, 3, 24),
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true,
                 Order = 2
@@ -206,7 +214,8 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/asian-visa-guide/title.jpg",
                 LongTitle = "Guide to visas in Asia",
                 Category = asiaCategory,
-                Created = DateTime.Today,
+                Created = new DateTime(2023, 12, 18),
+                LastUpdated = new DateTime(2024, 2, 14),
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -218,7 +227,8 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/vietnam/title.jpg",
                 LongTitle = "My travels through Vietnam: South to North by train, moped and bike",
                 Category = asiaCategory,
-                Created = DateTime.Today,
+                Created = new DateTime(2024, 5, 1),
+                LastUpdated = new DateTime(2024, 5, 8),
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -232,7 +242,8 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/mongolia/title.jpg",
                 LongTitle = "What not to miss when traveling through Mongolia by car",
                 Category = mongoliaCategory,
-                Created = DateTime.Today,
+                Created = new DateTime(2024, 2, 2),
+                LastUpdated = new DateTime(2024, 2, 2),
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -244,7 +255,8 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/mongolia-car-rental/title.jpg",
                 LongTitle = "Mongolia: car rental guide",
                 Category = mongoliaCategory,
-                Created = DateTime.Today,
+                Created = new DateTime(2024, 2, 6),
+                LastUpdated = new DateTime(2024, 2, 6),
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -258,7 +270,8 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/chinese-wall/title.jpg",
                 LongTitle = "How I visited the Great Wall of China from Beijing",
                 Category = chinaCategory,
-                Created = DateTime.Today,
+                Created = new DateTime(2024, 2, 16),
+                LastUpdated = new DateTime(2024, 2, 17),
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -270,7 +283,8 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/chinese-railway/title.jpg",
                 LongTitle = "How to use trains in China",
                 Category = chinaCategory,
-                Created = DateTime.Today,
+                Created = new DateTime(2024, 2, 25),
+                LastUpdated = new DateTime(2024, 2, 25),
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };
@@ -284,7 +298,8 @@ namespace Horizontal.Domain.MigrationAndSeed
                 PreviewPhotoPath = "/img/indian-railway/title.jpg",
                 LongTitle = "How to use trains in India",
                 Category = indiaCategory,
-                Created = DateTime.Today,
+                Created = new DateTime(2024, 2, 28),
+                LastUpdated = new DateTime(2024, 2, 28),
                 TextBeginning = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In convallis. Nulla est. Mauris dictum facilisis augue. Aliquam ante. Aenean placerat. In rutrum. Nullam sit amet magna in magna gravida vehicula. Nulla quis diam. Maecenas aliquet accumsan leo. Proin in tellus sit amet nibh dignissim sagittis. Nullam eget nisl. Nulla non arcu lacinia neque faucibus fringilla. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Nullam dapibus fermentum ipsum. Fusce consectetuer risus a nunc.",
                 IsPublished = true
             };

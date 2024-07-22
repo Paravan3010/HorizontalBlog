@@ -12,8 +12,8 @@
         public string PageTitle { get; set; } = String.Empty;
         public string PageDescription { get; set; } = String.Empty;
         public Category? Category { get; set; }
-        public DateTime Created { get; set; } = DateTime.Today;
-        public DateTime LastUpdated { get; set; } = DateTime.Today;
+        public DateTime Created { get; set; }
+        public DateTime LastUpdated { get; set; }
         public bool IsPublished { get; set; } = false;
         public string GalleryUrl { get; set; } = String.Empty;
         public int NumberOfVisits { get; set; }
