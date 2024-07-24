@@ -1,0 +1,2 @@
+# Horizontal Blog unit tests
+The example data in _Horizontal/Domain/MigrationAndSeed/SeedData.cs_ is primarily used for initial application runs, debugging, and development. For use in unit tests, it is stored in an in-memory database. The context for this database is provided by _InMemoryDbContextFactory.cs_.
