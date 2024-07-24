@@ -26,12 +26,12 @@ namespace Horizontal.Mapping
                 GalleryExists = !String.IsNullOrEmpty(domainModel.GalleryUrl),
                 GalleryUrl = domainModel.GalleryUrl,
                 PreviousArticleId = domainModel.PreviousArticle?.Id,
-                PreviousArticleShortName = String.IsNullOrEmpty(domainModel.PreviousArticle?.LongTitle) ?
+                PreviousArticleLongTitle = String.IsNullOrEmpty(domainModel.PreviousArticle?.LongTitle) ?
                                                 domainModel.PreviousArticle?.ShortTitle :
                                                 domainModel.PreviousArticle?.LongTitle,
                 IsPreviousArticlePublished = domainModel.PreviousArticle?.IsPublished ?? false,
                 NextArticleId = domainModel.NextArticle?.Id,
-                NextArticleShortName = String.IsNullOrEmpty(domainModel.NextArticle?.LongTitle) ?
+                NextArticleLongTitle = String.IsNullOrEmpty(domainModel.NextArticle?.LongTitle) ?
                                             domainModel.NextArticle?.ShortTitle :
                                             domainModel.NextArticle?.LongTitle,
                 IsNextArticlePublished = domainModel.NextArticle?.IsPublished ?? false,

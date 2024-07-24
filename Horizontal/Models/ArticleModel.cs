@@ -24,11 +24,11 @@ namespace Horizontal.Models
         public string GalleryUrl{ get; set; } = String.Empty;
 
         public int? NextArticleId { get; set; }
-        public string NextArticleShortName { get; set; } = String.Empty;
+        public string NextArticleLongTitle { get; set; } = String.Empty;
         public bool IsNextArticlePublished { get; set; }
 
         public int? PreviousArticleId { get; set; }
-        public string PreviousArticleShortName { get; set; } = String.Empty;
+        public string PreviousArticleLongTitle { get; set; } = String.Empty;
         public bool IsPreviousArticlePublished { get; set; }
     }
 }
