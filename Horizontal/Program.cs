@@ -15,6 +15,11 @@ namespace Horizontal
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Logging.ClearProviders();
+            builder.Logging.AddConsole();
+            builder.Logging.AddDebug();
+
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddDbContext<HorizontalDbContext>(options => options.UseSqlServer(builder.Configuration["ConnectionStrings:MainConnection"]));
@@ -39,45 +44,62 @@ namespace Horizontal
 
             var app = builder.Build();
 
-            app.UseRequestLocalization(opts =>
+            try
             {
-                opts.AddSupportedCultures("cs")
-                    .AddSupportedUICultures("cs")
-                    .SetDefaultCulture("cs");
-            });
+                app.UseRequestLocalization(opts =>
+                {
+                    opts.AddSupportedCultures("cs")
+                        .AddSupportedUICultures("cs")
+                        .SetDefaultCulture("cs");
+                });
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+                app.UseAuthentication();
+                app.UseAuthorization();
 
-            app.UseMiddleware<CustomUrlMiddleware>();
+                app.UseMiddleware<CustomUrlMiddleware>();
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseRouting();
-            app.UseAuthorization();
+                app.UseHttpsRedirection();
+                app.UseStaticFiles();
+                app.UseRouting();
+                app.UseAuthorization();
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Main}/{id?}");
-            app.MapDefaultControllerRoute();
+                app.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Main}/{id?}");
+                app.MapDefaultControllerRoute();
 
-            app.UseEndpoints(endpoints =>
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers(); // This enables attribute routing for controllers.
+                });
+
+                app.MapGet("/Admin", context =>
+                {
+                    context.Response.Redirect("/Admin/General");
+                    return Task.CompletedTask;
+                });
+
+                MigrationManager.Migrate(app);
+                if (app.Environment.IsDevelopment())
+                    SeedData.EnsurePopulated(app, builder.Configuration);
+                IdentityDataSeed.EnsurePopulated(app, builder.Configuration);
+
+                app.Run();
+            }
+            catch (Exception ex)
             {
-                endpoints.MapControllers(); // This enables attribute routing for controllers.
-            });
+                LogException(ex);
+                throw;
+            }
+        }
 
-            app.MapGet("/Admin", context =>
-            {
-                context.Response.Redirect("/Admin/General");
-                return Task.CompletedTask;
-            });
+        private static void LogException(Exception ex)
+        {
+            var logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", "errors.log");
+            Directory.CreateDirectory(Path.GetDirectoryName(logFilePath)!);
 
-            MigrationManager.Migrate(app);
-            if (app.Environment.IsDevelopment())
-                SeedData.EnsurePopulated(app, builder.Configuration);
-            IdentityDataSeed.EnsurePopulated(app, builder.Configuration);
-
-            app.Run();
+            var logEntry = $"[{DateTime.Now}] {ex.Message}{Environment.NewLine}{ex.StackTrace}{Environment.NewLine}";
+            File.AppendAllText(logFilePath, logEntry);
         }
     }
 }
