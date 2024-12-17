@@ -44,7 +44,7 @@ namespace Horizontal.Mapping
             return new TagPreviewModel
             {
                 Id = domainModel.Id,
-                Name = domainModel.Name,                
+                Name = domainModel.Name,
                 IsPublished = domainModel.IsPublished,
                 IsInTopNavbar = domainModel.IsInTopNavbar,
                 CustomUrl = customUrlProvider.HasCustomUrl("Category", "Tag", (key: "tagName", value: domainModel.Name)) ?
@@ -132,8 +132,7 @@ namespace Horizontal.Mapping
             category.IsPublished = viewModel.IsPublished;
             category.IsInTopNavbar = viewModel.IsInTopNavbar;
             category.TopNavbarOrder = viewModel.TopNavbarOrder;
-            if (!String.IsNullOrEmpty(viewModel.ParentCategoryName))
-                category.ParentCategory = categoryRepository.Categories.Where(x => x.Name == viewModel.ParentCategoryName).FirstOrDefault();
+            category.ParentCategory = categoryRepository.Categories.Where(x => x.Name == viewModel.ParentCategoryName).FirstOrDefault();
             if (!String.IsNullOrEmpty(viewModel.ChildCategoryNames))
                 category.ChildCategories = categoryRepository.Categories.Where(x => viewModel.ChildCategoryNames.Split(", ", StringSplitOptions.None).Contains(x.Name)).ToList();
             if (!String.IsNullOrEmpty(viewModel.ArticleShortNames))
