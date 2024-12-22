@@ -74,7 +74,7 @@ namespace Horizontal.Mapping
         public static Tag MapTag(AdminTagModel viewModel, IArticleTagRepository articleTagRepository, IArticleRepository articleRepository = null, Tag resultModel = null)
         {
             resultModel = resultModel ?? new Tag();
-            resultModel.Name = viewModel.Name;
+            resultModel.Name = viewModel.Name ?? String.Empty;
             resultModel.PageTitle = viewModel.PageTitle ?? String.Empty;
             resultModel.PageDescription = viewModel.PageDescription ?? String.Empty;
             resultModel.IsPublished = viewModel.IsPublished;
@@ -126,7 +126,7 @@ namespace Horizontal.Mapping
                                            IArticleRepository articleRepository, Category category = null)
         {
             category = category ?? new Category();
-            category.Name = viewModel.Name;
+            category.Name = viewModel.Name ?? String.Empty;
             category.PageTitle = viewModel.PageTitle ?? String.Empty;
             category.PageDescription = viewModel.PageDescription ?? String.Empty;
             category.IsPublished = viewModel.IsPublished;
