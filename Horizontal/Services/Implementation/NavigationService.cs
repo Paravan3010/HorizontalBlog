@@ -43,7 +43,9 @@ namespace Horizontal.Services.Implementation
                 var articles = scopedArticleRepository.Articles.Where(x => x.IsPublished);
 
                 // Recursively add all categories and articles
-                foreach (var topCategory in categories.Where(x => x.ParentCategory == null).OrderBy(o => o.Name))
+                foreach (var topCategory in categories.Where(x => x.ParentCategory == null)
+                                                      .OrderBy(o => o.GeneralOrder)
+                                                      .ThenBy(o => o.Name))
                 {
                     var cnm = new CategoryNavigationModel()
                     {
@@ -56,7 +58,9 @@ namespace Horizontal.Services.Implementation
 
                 void addCategoriesAndArticlesRec(CategoryNavigationModel cnm)
                 {
-                    var subcategories = categories.Where(x => x.ParentCategory != null && x.ParentCategory.Id == cnm.CategoryId).OrderBy(o => o.Name);
+                    var subcategories = categories.Where(x => x.ParentCategory != null && x.ParentCategory.Id == cnm.CategoryId)
+                                                  .OrderBy(o => o.GeneralOrder)
+                                                  .ThenBy(o => o.Name);
                     if (subcategories.Any())
                         cnm.Subcategorie = new List<CategoryNavigationModel>();
                     foreach (var subcategory in subcategories)

@@ -11,6 +11,7 @@
         public IList<Article> Articles { get; set; } = new List<Article>();
         public bool IsInTopNavbar { get; set; } = false;
         public int TopNavbarOrder { get; set; }
+        public int GeneralOrder { get; set; }
         public bool IsPublished { get; set; } = false;
     }
 }
