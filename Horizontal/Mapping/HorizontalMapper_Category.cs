@@ -116,6 +116,7 @@ namespace Horizontal.Mapping
                 IsPublished = domainModel.IsPublished,
                 IsInTopNavbar = domainModel.IsInTopNavbar,
                 TopNavbarOrder = domainModel.TopNavbarOrder,
+                GeneralOrder = domainModel.GeneralOrder,
                 ChildCategoryNames = String.Join(", ", domainModel?.ChildCategories.Select(x => x.Name) ?? Enumerable.Empty<string>()),
                 ArticleShortNames = String.Join(", ", domainModel?.Articles.Select(x => x.ShortTitle) ?? Enumerable.Empty<string>()),
                 CustomUrl = customUrlRepository.CustomUrls?.Where(x => x.OriginalUrl == $"/Category/Category?categoryId={domainModel.Id}").FirstOrDefault()?.NewUrl ?? String.Empty
@@ -132,6 +133,7 @@ namespace Horizontal.Mapping
             category.IsPublished = viewModel.IsPublished;
             category.IsInTopNavbar = viewModel.IsInTopNavbar;
             category.TopNavbarOrder = viewModel.TopNavbarOrder;
+            category.GeneralOrder = viewModel.GeneralOrder;
             category.ParentCategory = categoryRepository.Categories.Where(x => x.Name == viewModel.ParentCategoryName).FirstOrDefault();
             if (!String.IsNullOrEmpty(viewModel.ChildCategoryNames))
                 category.ChildCategories = categoryRepository.Categories.Where(x => viewModel.ChildCategoryNames.Split(", ", StringSplitOptions.None).Contains(x.Name)).ToList();
