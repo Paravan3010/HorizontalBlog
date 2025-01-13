@@ -23,6 +23,7 @@
         <div class="form-group">
             <label for="LongTitle">Dlouhý titulek</label>
             <input name="LongTitle" class="form-control" value="@Model.LongTitle" />
+            <span asp-validation-for="LongTitle" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label for="TextBeginning">Začátek textu</label>
