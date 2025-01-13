@@ -64,7 +64,7 @@ namespace Horizontal.Mapping
                 IsPublished = domainModel.IsPublished,
                 IsInTopNavbar = domainModel.IsInTopNavbar,
                 TopNavbarOrder = domainModel.TopNavbarOrder,
-                ArticleShortTitles = String.Join(", ", articleTagRepository.GetArticlesByTag(domainModel).Select(x => x.ShortTitle) ?? Enumerable.Empty<string>()),
+                ArticleShortTitles = String.Join(Environment.NewLine, articleTagRepository.GetArticlesByTag(domainModel).Select(x => x.LongTitle) ?? Enumerable.Empty<string>()),
                 CustomUrl = customUrlRepository.CustomUrls?
                                          .Where(x => x.OriginalUrl == $"/Category/Tag?tagName={domainModel.Name}")
                                          .FirstOrDefault()?.NewUrl ?? String.Empty
@@ -83,8 +83,9 @@ namespace Horizontal.Mapping
             if (!String.IsNullOrEmpty(viewModel.ArticleShortTitles))
             {
                 articleTagRepository.SetArticlesForTag(resultModel, articleRepository.Articles.Where(x => viewModel.ArticleShortTitles
-                                                                                    .Split(", ", StringSplitOptions.None)
-                                                                                    .Contains(x.ShortTitle)).ToArray());
+                                                                                    .Split(Environment.NewLine, StringSplitOptions.None)
+                                                                                    .Select(x => x.Trim())
+                                                                                    .Contains(x.LongTitle)).ToArray());
             }
 
 
@@ -118,7 +119,7 @@ namespace Horizontal.Mapping
                 TopNavbarOrder = domainModel.TopNavbarOrder,
                 GeneralOrder = domainModel.GeneralOrder,
                 ChildCategoryNames = String.Join(", ", domainModel?.ChildCategories.Select(x => x.Name) ?? Enumerable.Empty<string>()),
-                ArticleShortNames = String.Join(", ", domainModel?.Articles.Select(x => x.ShortTitle) ?? Enumerable.Empty<string>()),
+                ArticleShortNames = String.Join(Environment.NewLine, domainModel?.Articles.Select(x => x.LongTitle) ?? Enumerable.Empty<string>()),
                 CustomUrl = customUrlRepository.CustomUrls?.Where(x => x.OriginalUrl == $"/Category/Category?categoryId={domainModel.Id}").FirstOrDefault()?.NewUrl ?? String.Empty
             };
         }
@@ -138,7 +139,13 @@ namespace Horizontal.Mapping
             if (!String.IsNullOrEmpty(viewModel.ChildCategoryNames))
                 category.ChildCategories = categoryRepository.Categories.Where(x => viewModel.ChildCategoryNames.Split(", ", StringSplitOptions.None).Contains(x.Name)).ToList();
             if (!String.IsNullOrEmpty(viewModel.ArticleShortNames))
-                category.Articles = articleRepository.Articles.Where(x => viewModel.ArticleShortNames.Split(", ", StringSplitOptions.None).Contains(x.ShortTitle)).ToList();
+            {
+                category.Articles = articleRepository.Articles.Where(x => viewModel.ArticleShortNames
+                                                                                   .Split(Environment.NewLine, StringSplitOptions.None)
+                                                                                   .Select(x => x.Trim())
+                                                                                   .Contains(x.LongTitle))
+                                                              .ToList();
+            }
 
             return category;
         }
