@@ -56,6 +56,7 @@ namespace Horizontal.Mapping
             resultModel.Created = DateTime.Parse(viewModel.Published);
             resultModel.LastUpdated = DateTime.Parse(viewModel.LastUpdated);
             resultModel.IsPublished = viewModel.IsPublished;
+            resultModel.IsInFeed = viewModel.IsInFeed;
             resultModel.GalleryUrl = viewModel.GalleryUrl;
             resultModel.PreviousArticle = articleRepository.Articles.Where(x => x.Id == viewModel.PreviousArticleId).FirstOrDefault();
             resultModel.NextArticle = articleRepository.Articles.Where(x => x.Id == viewModel.NextArticleId).FirstOrDefault();
@@ -81,6 +82,7 @@ namespace Horizontal.Mapping
                 Id = domainModel.Id,
                 ShortTitle = domainModel.ShortTitle,
                 IsPublished = domainModel.IsPublished,
+                IsInFeed = domainModel.IsInFeed,
                 CustomUrl = customUrlProvider.HasCustomUrl("Article", "FullArticle", (key: "articleId", value: domainModel.Id.ToString())) ?
                                 customUrlProvider.GetCustomUrl("Article", "FullArticle", (key: "articleId", value: domainModel.Id.ToString())) :
                                 String.Empty,
@@ -95,6 +97,7 @@ namespace Horizontal.Mapping
             {
                 Id = domainModel.Id,
                 IsPublished = domainModel.IsPublished,
+                IsInFeed = domainModel.IsInFeed,
                 CategoryName = domainModel.Category?.Name ?? String.Empty,
                 ShortTitle = domainModel.ShortTitle,
                 LongTitle = domainModel.LongTitle,
@@ -105,7 +108,7 @@ namespace Horizontal.Mapping
                 Tags = String.Join(", ", articleTagRepository.GetTagsByArticle(domainModel).Select(x => x.Name) ?? Enumerable.Empty<string>()),
                 FilePath = domainModel.FilePath,
                 PreviewPhotoPath = domainModel.PreviewPhotoPath,
-                Published = domainModel.Created.ToString("d. M. yyyy"),
+                Published = domainModel.Created.ToString("d. M. yyyy"),                
                 LastUpdated = domainModel.LastUpdated.ToString("d. M. yyyy"),
                 CustomUrl = customUrlRepository.CustomUrls?.Where(x => x.OriginalUrl == $"/Article/FullArticle?articleId={domainModel.Id}").FirstOrDefault()?.NewUrl ?? String.Empty,
                 GalleryUrl = domainModel.GalleryUrl,
