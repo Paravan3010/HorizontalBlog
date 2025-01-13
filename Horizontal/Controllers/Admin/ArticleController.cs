@@ -72,7 +72,8 @@ namespace Horizontal.Controllers.Admin
         [Route("create")]
         public IActionResult Create(AdminArticleModel model)
         {
-            // Check ModelState
+            if (!IsValidAdminArticleModel(model))
+                return View("Views/Admin/Article/Detail.cshtml", model);
 
             var article = HorizontalMapper.MapArticle(model, _categoryRepository, _tagRepository, _articleRepository, _articleTagRepository);
             var articleId = _articleRepository.UpsertArticle(article);
@@ -101,6 +102,9 @@ namespace Horizontal.Controllers.Admin
             var article = _articleRepository.Articles.Where(x => x.Id == model.Id).FirstOrDefault();
             if (article == null)
                 return NotFound();
+
+            if (!IsValidAdminArticleModel(model))
+                return View("Views/Admin/Article/Detail.cshtml", model);
 
             article = HorizontalMapper.MapArticle(model, _categoryRepository, _tagRepository, _articleRepository, _articleTagRepository, article);
             _articleRepository.SaveArticle(article);
@@ -155,6 +159,18 @@ namespace Horizontal.Controllers.Admin
             }
 
             return Redirect("/admin/article");
+        }
+
+        private bool IsValidAdminArticleModel(AdminArticleModel model)
+        {
+            if (!ModelState.IsValid)
+                return false;
+
+            // Unique Long Title
+            if (_articleRepository.Articles.Any(article => article.Id != model.Id && article.LongTitle == model.LongTitle))
+                ModelState.AddModelError(nameof(AdminArticleModel.LongTitle), "Dlouhý titulek musí být unikátní. Článek s tímto titulkem již existuje.");
+
+            return ModelState.IsValid;
         }
     }
 }

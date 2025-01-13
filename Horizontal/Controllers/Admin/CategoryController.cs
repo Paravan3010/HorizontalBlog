@@ -53,7 +53,8 @@ namespace Horizontal.Controllers.Admin
         [Route("create")]
         public IActionResult Create(AdminCategoryModel model)
         {
-            // Check ModelState
+            if (!IsValidAdminCategoryModel(model))
+                return View("Views/Admin/Category/Detail.cshtml", model);
 
             var category = HorizontalMapper.MapCategory(model, _categoryRepository, _articleRepository);
             var categoryId = _categoryRepository.CreateCategory(category);
@@ -82,6 +83,9 @@ namespace Horizontal.Controllers.Admin
             var category = _categoryRepository.Categories.Where(x => x.Id == model.Id).FirstOrDefault();
             if (category == null)
                 return NotFound();
+
+            if (!IsValidAdminCategoryModel(model))
+                return View("Views/Admin/Category/Detail.cshtml", model);
 
             category = HorizontalMapper.MapCategory(model, _categoryRepository, _articleRepository, category);
             _categoryRepository.SaveCategory(category);
@@ -137,6 +141,18 @@ namespace Horizontal.Controllers.Admin
             }
 
             return Redirect("/admin/category");
+        }
+
+        private bool IsValidAdminCategoryModel(AdminCategoryModel model)
+        {
+            if (!ModelState.IsValid)
+                return false;
+
+            // Unique Long Title
+            if (_categoryRepository.Categories.Any(category => category.Id != model.Id && category.Name == model.Name))
+                ModelState.AddModelError(nameof(AdminCategoryModel.Name), "Jméno kategorie musí být unikátní. Kategorie s tímto jménem již existuje.");
+
+            return ModelState.IsValid;
         }
     }
 }
