@@ -11,12 +11,12 @@ namespace Horizontal.Models
         public BaseModel(INavigationService navigationService, ITagRepository tagRepository, ICategoryRepository categoryRepository) 
         {
             var tagQuery = tagRepository.Tags
-               .Where(x => x.IsInTopNavbar)
+               .Where(x => x.IsPublished && x.IsInTopNavbar)
                .Select(x => new TopNavBarLink { Name = x.Name, TopNavbarOrder = x.TopNavbarOrder, Type = "Tag" })
                .ToList();
 
             var categoryQuery = categoryRepository.Categories
-                .Where(x => x.IsInTopNavbar)
+                .Where(x => x.IsPublished && x.IsInTopNavbar)
                 .Select(x => new TopNavBarLink { Name = x.Name, TopNavbarOrder = x.TopNavbarOrder, Type = "Category", CategoryId = x.Id })
                 .ToList();
 

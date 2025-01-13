@@ -16,7 +16,7 @@ namespace Horizontal.Mapping
                 Id = domainModel.Id,
                 PreviewPhotoPath = String.IsNullOrEmpty(domainModel.PreviewPhotoPath) ? "/img/development/dummy_1250x500.png" : domainModel.PreviewPhotoPath,
                 ArticleHtmlPath = domainModel.FilePath ?? String.Empty,
-                Tags = articleTagRepository.GetTagsByArticle(domainModel).Select(x => x.Name).ToList(),
+                Tags = articleTagRepository.GetTagsByArticle(domainModel).Where(x => x.IsPublished).Select(x => x.Name).ToList(),
                 Title = domainModel.LongTitle ?? domainModel.ShortTitle,
                 Published = domainModel.Created,
                 LastUpdated = domainModel.LastUpdated,
