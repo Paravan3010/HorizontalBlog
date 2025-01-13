@@ -15,6 +15,7 @@
         public DateTime Created { get; set; } = DateTime.Today;
         public DateTime LastUpdated { get; set; } = DateTime.Today;
         public bool IsPublished { get; set; } = false;
+        public bool IsInFeed { get; set; } = true;
         public string GalleryUrl { get; set; } = String.Empty;
         public int NumberOfVisits { get; set; }
         public Article? PreviousArticle { get; set; }

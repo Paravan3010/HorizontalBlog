@@ -23,6 +23,7 @@
         <tr>
             <th>Krátký titulek</th>
             <th style="text-align:center; width:140px">Vypublikováno</th>
+            <th style="text-align:center; width:140px">Ve feedu</th>
             <th style="text-align:center; width:110px">Zobrazení</th>
             <th>URL</th>
             <th style="width:200px">Akce</th>
@@ -39,6 +40,16 @@
                     </td>
                     <td style="text-align:center">
                         @if (article.IsPublished)
+                        {
+                            <i class="fa-solid fa-square-check fa-2xl" style="color: #16d416; vertical-align: middle; "></i>
+                        }
+                        else
+                        {
+                            <i class="fa-solid fa-square-xmark fa-2xl" style="color: #df1111;"></i>
+                        }
+                    </td>
+                    <td style="text-align:center">
+                        @if (article.IsInFeed)
                         {
                             <i class="fa-solid fa-square-check fa-2xl" style="color: #16d416; vertical-align: middle; "></i>
                         }

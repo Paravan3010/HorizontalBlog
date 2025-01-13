@@ -39,7 +39,8 @@ namespace Horizontal.Controllers
             var mainModel = new MainModel(_navigationService, _tagRepository, _categoryRepository);
 
             var publishedArticles = _articleRepository.Articles.Where(x => x.IsPublished);
-            foreach (var article in publishedArticles.OrderByDescending(x => x.Created)
+            foreach (var article in publishedArticles.Where(x => x.IsInFeed)
+                                                     .OrderByDescending(x => x.Created)
                                                      .Skip((_generalSettingsRepository.GeneralSettings.FirstOrDefault()?.PageSize ?? 10) * (page - 1))
                                                      .Take(_generalSettingsRepository.GeneralSettings.FirstOrDefault()?.PageSize ?? 10))
             {
