@@ -54,7 +54,8 @@
                 @if (Model.IsPreviousArticlePublished && Model.PreviousArticleId != null)
                 {
                     <a class="post__end-nav-previous" 
-                       href="@customUrlProviderService.GetCustomUrl("Article", "FullArticle", (key: "articleId", value: Model.PreviousArticleId.ToString()))">
+                       href="@customUrlProviderService.GetCustomUrl("Article", "FullArticle", (key: "articleId", value: Model.PreviousArticleId.ToString()))"
+                       rel="prev">
                         <div class="post__end-nav-circle">
                             <img src="/icons/arrow-left-90.png" alt="arrow left">
                         </div>
@@ -66,7 +67,8 @@
                 @if (Model.IsNextArticlePublished && Model.NextArticleId != null)
                 {
                     <a class="post__end-nav-next"
-                       href="@customUrlProviderService.GetCustomUrl("Article", "FullArticle", (key: "articleId", value: Model.NextArticleId.ToString()))">
+                       href="@customUrlProviderService.GetCustomUrl("Article", "FullArticle", (key: "articleId", value: Model.NextArticleId.ToString()))"
+                       rel="next">
                         <div class="post__end-nav-circle">
                             <img src="/icons/arrow-right-90.png" alt="arrow right" width="16">
                         </div>                        
