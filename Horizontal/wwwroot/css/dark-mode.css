@@ -75,7 +75,7 @@ html.dark-theme .table tfoot td {
 }
 
 @media (hover: hover) {
-    html.dark-theme nav.side-navbar li > i.fa-chevron-right:hover {
+    html .dark-theme nav.side-navbar li > i.fa-chevron-right:hover {
         cursor: pointer;
         color: #f13544;
     }
