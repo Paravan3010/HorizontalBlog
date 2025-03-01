@@ -15,6 +15,7 @@ namespace Horizontal.Mapping
                 PageSize = domainModel.PageSize,
                 MainPageTitle = domainModel.MainPageTitle ?? String.Empty,
                 MainPageDescription = domainModel.MainPageDescription ?? String.Empty,
+                InstagramUrl = domainModel.InstagramUrl ?? String.Empty
             };
         }
 
@@ -25,6 +26,7 @@ namespace Horizontal.Mapping
             result.PageSize = viewModel.PageSize;
             result.MainPageTitle = viewModel.MainPageTitle ?? String.Empty;
             result.MainPageDescription = viewModel.MainPageDescription ?? String.Empty;
+            result.InstagramUrl = viewModel.InstagramUrl ?? String.Empty;
             return result;
         }
 

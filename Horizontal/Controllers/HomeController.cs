@@ -1,5 +1,6 @@
 ﻿using Horizontal.Domain;
 using Horizontal.Domain.Repositories;
+using Horizontal.Domain.Repositories.EF;
 using Horizontal.Mapping;
 using Horizontal.Models;
 using Horizontal.Models.Navigation;
@@ -36,7 +37,7 @@ namespace Horizontal.Controllers
 
         public IActionResult Main(int page = 1)
         {
-            var mainModel = new MainModel(_navigationService, _tagRepository, _categoryRepository);
+            var mainModel = new MainModel(_navigationService, _tagRepository, _categoryRepository, _generalSettingsRepository);
 
             var publishedArticles = _articleRepository.Articles.Where(x => x.IsPublished);
             foreach (var article in publishedArticles.Where(x => x.IsInFeed)
@@ -44,7 +45,8 @@ namespace Horizontal.Controllers
                                                      .Skip((_generalSettingsRepository.GeneralSettings.FirstOrDefault()?.PageSize ?? 10) * (page - 1))
                                                      .Take(_generalSettingsRepository.GeneralSettings.FirstOrDefault()?.PageSize ?? 10))
             {
-                mainModel.Articles.Add(HorizontalMapper.MapArticleModel(article, _navigationService, _tagRepository, _categoryRepository, _articleTagRepository));
+                mainModel.Articles.Add(HorizontalMapper.MapArticleModel(article, _navigationService, _tagRepository, 
+                                                                        _categoryRepository, _articleTagRepository, _generalSettingsRepository));
             }
 
             var settings = _generalSettingsRepository.GeneralSettings.FirstOrDefault();

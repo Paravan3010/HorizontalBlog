@@ -82,13 +82,33 @@ header .top-navbar {
         display: inline-block;
     }
 
-.navbar__left, .navbar__right {
+.navbar__left {
     min-width: fit-content;
 }
 
-    .navbar__left li, .navbar__right li {
+    .navbar__left li {
         margin: 0 10px;
     }
+
+.navbar__right {
+    width: 30px;
+}
+
+#light-mode-button {
+    color: white;
+}
+
+#dark-mode-button {
+    color: black;
+}
+
+body.light-theme #light-mode-button {
+    display: none
+}
+
+body.dark-theme #dark-mode-button {
+    display: none
+}
 
 .navbar__main-nav > ul {
     margin: 0 15px;

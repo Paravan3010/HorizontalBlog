@@ -9,9 +9,13 @@ namespace Horizontal.Mapping
 {
     public static partial class HorizontalMapper
     {
-        public static CategoryModel MapCategoryModel(Category domainModel, INavigationService navService, ITagRepository tagRepo, ICategoryRepository categoryRepo)
+        public static CategoryModel MapCategoryModel(Category domainModel, 
+                                                     INavigationService navService, 
+                                                     ITagRepository tagRepo, 
+                                                     ICategoryRepository categoryRepo, 
+                                                     IGeneralSettingsRepository generalSettingsRepository)
         {
-            var model = new CategoryModel(navService, tagRepo, categoryRepo)
+            var model = new CategoryModel(navService, tagRepo, categoryRepo, generalSettingsRepository)
             {
                 CategoryId = domainModel.Id,
                 CategoryName = domainModel.Name,
@@ -24,9 +28,13 @@ namespace Horizontal.Mapping
             return model;
         }
 
-        public static CategoryModel MapCategoryModel(Tag domainModel, INavigationService navService, ITagRepository tagRepo, ICategoryRepository categoryRepo)
+        public static CategoryModel MapCategoryModel(Tag domainModel, 
+                                                     INavigationService navService, 
+                                                     ITagRepository tagRepo, 
+                                                     ICategoryRepository categoryRepo, 
+                                                     IGeneralSettingsRepository generalSettingsRepository)
         {
-            var model = new CategoryModel(navService, tagRepo, categoryRepo)
+            var model = new CategoryModel(navService, tagRepo, categoryRepo, generalSettingsRepository)
             {
                 CategoryName = domainModel.Name,
                 ActionName = nameof(CategoryController.Tag),

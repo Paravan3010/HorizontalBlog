@@ -14,18 +14,21 @@ namespace Horizontal.Controllers
         private ITagRepository _tagRepository;
         private ICategoryRepository _categoryRepository;
         private IArticleTagRepository _articleTagRepository;
+        private IGeneralSettingsRepository _generalSettingsRepository;
 
         public ArticleController(IArticleRepository articleRepository,
                                  INavigationService navigationService,
                                  ITagRepository tagRepository,
                                  ICategoryRepository categoryRepository,
-                                 IArticleTagRepository articleTagRepository)
+                                 IArticleTagRepository articleTagRepository,
+                                 IGeneralSettingsRepository generalSettingsRepository)
         {
             _articleRepository = articleRepository;
             _navigationService = navigationService;
             _tagRepository = tagRepository;
             _categoryRepository = categoryRepository;
             _articleTagRepository = articleTagRepository;
+            _generalSettingsRepository = generalSettingsRepository;
         }
 
         public IActionResult FullArticle(int articleId)
@@ -38,7 +41,8 @@ namespace Horizontal.Controllers
                 return RedirectToAction("Login", "Account", new { returnUrl = Url.Action("FullArticle", new { articleId }) });
 
             _articleRepository.IncreaseVisitCount(articleId);
-            return View(HorizontalMapper.MapArticleModel(article, _navigationService, _tagRepository, _categoryRepository, _articleTagRepository));
+            return View(HorizontalMapper.MapArticleModel(article, _navigationService, _tagRepository, _categoryRepository, 
+                                                         _articleTagRepository, _generalSettingsRepository));
         }
     }
 }

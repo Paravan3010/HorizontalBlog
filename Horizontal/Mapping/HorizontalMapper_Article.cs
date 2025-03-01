@@ -9,9 +9,10 @@ namespace Horizontal.Mapping
     public static partial class HorizontalMapper
     {
         public static ArticleModel MapArticleModel(Article domainModel, INavigationService navService, ITagRepository tagRepo,
-                                                   ICategoryRepository categoryRepo, IArticleTagRepository articleTagRepository)
+                                                   ICategoryRepository categoryRepo, IArticleTagRepository articleTagRepository,
+                                                   IGeneralSettingsRepository generalSettingsRepository)
         {
-            return new ArticleModel(navService, tagRepo, categoryRepo)
+            return new ArticleModel(navService, tagRepo, categoryRepo, generalSettingsRepository)
             {
                 Id = domainModel.Id,
                 PreviewPhotoPath = String.IsNullOrEmpty(domainModel.PreviewPhotoPath) ? "/img/development/dummy_1250x500.png" : domainModel.PreviewPhotoPath,

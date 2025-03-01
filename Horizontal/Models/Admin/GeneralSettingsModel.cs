@@ -6,5 +6,6 @@
         public int PageSize { get; set; }
         public string MainPageTitle { get; set; }
         public string MainPageDescription { get; set; }
+        public string InstagramUrl { get; set; }
     }
 }

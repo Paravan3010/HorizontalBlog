@@ -39,6 +39,11 @@
                 <textarea name="MainPageDescription" class="form-control" rows="6" oninput="updateCharacterCount(this, 'page-description-char-count')">@Model.MainPageDescription</textarea>
                 <span id="page-description-char-count" style="float:right">Znaků: @(Model.MainPageDescription?.Length ?? 0)</span>
             </div>
+
+            <div class="form-group">
+                <label for="InstagramUrl">Odkaz na Instagram</label>
+                <input name="InstagramUrl" class="form-control" value="@Model.InstagramUrl" />
+            </div>
         </fieldset>
 
         <button type="submit" class="btn btn-success mb-2" style="margin-top:10px">Uložit změny</button>
