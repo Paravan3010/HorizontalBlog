@@ -64,8 +64,14 @@ html.dark-theme .full-article__footing-nav strong {
     color: white;
 }
 
-html.dark-theme ul.clean-list li {
+html.dark-theme ul.clean-list li,
+html.dark-theme .table td {
     color: #d9d9d9;
+}
+
+html.dark-theme .table th,
+html.dark-theme .table tfoot td {
+    color: white;
 }
 
 @media (hover: hover) {
