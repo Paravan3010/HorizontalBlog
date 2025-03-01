@@ -8,8 +8,9 @@ namespace Horizontal.Models
     {
         public CategoryModel(INavigationService navigationService, 
                              ITagRepository tagRepository, 
-                             ICategoryRepository categoryRepository) : 
-            base(navigationService, tagRepository, categoryRepository)
+                             ICategoryRepository categoryRepository, 
+                             IGeneralSettingsRepository generalSettingsRepository) : 
+            base(navigationService, tagRepository, categoryRepository, generalSettingsRepository)
         {
         }
 

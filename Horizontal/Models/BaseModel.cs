@@ -8,7 +8,10 @@ namespace Horizontal.Models
 {
     public abstract class BaseModel
     {
-        public BaseModel(INavigationService navigationService, ITagRepository tagRepository, ICategoryRepository categoryRepository) 
+        public BaseModel(INavigationService navigationService, 
+                         ITagRepository tagRepository, 
+                         ICategoryRepository categoryRepository, 
+                         IGeneralSettingsRepository generalSettingsRepository) 
         {
             var tagQuery = tagRepository.Tags
                .Where(x => x.IsPublished && x.IsInTopNavbar)
@@ -28,6 +31,8 @@ namespace Horizontal.Models
                 .ToList();
 
             CategoriesNavigation = navigationService.GetCategoryNavigation();
+
+            InstagramUrl = generalSettingsRepository.GeneralSettings.FirstOrDefault()?.InstagramUrl ?? String.Empty;
         }
 
         public IList<TopNavbarLinkModel> TopNavbarLinks { get; set; }
@@ -41,6 +46,8 @@ namespace Horizontal.Models
         /// Short description of page content, that is used as description meta tag
         /// </summary>
         public string PageDescription { get; set; }
+
+        public string InstagramUrl { get; set; } = String.Empty;
 
         private class TopNavBarLink
         {

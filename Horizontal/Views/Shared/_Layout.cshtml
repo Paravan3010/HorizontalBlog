@@ -58,7 +58,9 @@
     <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
     <link href="/css/general.css" rel="stylesheet" />
     <link href="/css/main-page.css" rel="stylesheet" />
+    <link href="/css/dark-mode.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
+    <script type="text/javascript" src="/js/dark-theme.js"></script>
     <script type="text/javascript" src="/js/sticky-navbar.js"></script>
     <script type="text/javascript" src="/js/left-navbar.js"></script>
     @RenderSection("Scripts", required: false)
@@ -78,11 +80,14 @@
                                 <i class="fa-solid fa-house fa-lg"></i>
                             </a>
                         </li>
-                        @*<li >
-                            <a>
-                                <i class="fa-brands fa-instagram fa-lg"></i>
-                            </a>
-                        </li>*@
+                        @if (!string.IsNullOrWhiteSpace(Model.InstagramUrl))
+                        {
+                            <li>
+                                <a href="@Model.InstagramUrl" rel="external" target=”_blank”>
+                                    <i class="fa-brands fa-instagram fa-lg"></i>
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </nav>
 
@@ -103,19 +108,19 @@
                                 @if (link.Type == "Category")
                                 {
                                     <a href="@customUrlProviderService.GetCustomUrl("Category", "Category", (key: "categoryId", value: link.CategoryId.ToString()))">@link.Name</a>
-                                }                                
+                                }
                             </li>
                         }
                     </ul>
                 </nav>
 
                 <ul class="navbar__right">
-                    @*<li>
-                        <i class="fa-solid fa-moon fa-lg clickable"></i>
+                    <li>
+                        <i class="fa-solid fa-sun fa-lg clickable" id="light-mode-button"></i>
                     </li>
                     <li>
-                        <i class="fa-solid fa-sun fa-lg clickable"></i>
-                    </li>*@
+                        <i class="fa-solid fa-moon fa-lg clickable" id="dark-mode-button"></i>
+                    </li>
                 </ul>
             </div>
             <hr />
@@ -154,11 +159,11 @@
     <footer>
         <div class="footer-top">
             @*<section>
-                <h2>Odběr novinek</h2>
-                <form asp-controller="Home" asp-action="SignupForNewsletter" id="newsletter-form">
-                    <input type="text" name="email" placeholder="Váš Email">
+                <h2>odběr novinek</h2>
+                <form asp-controller="home" asp-action="signupfornewsletter" id="newsletter-form">
+                    <input type="text" name="email" placeholder="váš email">
                 </form>
-                <button class="button" type="submit" value="Submit" form="newsletter-form">Přihlásit k odběru</button>
+                <button class="button" type="submit" value="submit" form="newsletter-form">přihlásit k odběru</button>
                 <div class="clearfix"></div>
             </section>
 
