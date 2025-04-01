@@ -73,6 +73,10 @@ namespace Horizontal.Mapping
             foreach (var tagName in viewModel.Tags?.Split(", ") ?? Enumerable.Empty<string>())
                 articleTagRepository.UpsertTagForArticle(resultModel, tagRepository.Tags.Where(x => x.Name == tagName).First(), tagOrder++);
 
+            // Preview photo path must start with '/' to load correctly on subsequent pages
+            if (!resultModel.PreviewPhotoPath.StartsWith('/'))
+                resultModel.PreviewPhotoPath = $"/{resultModel.PreviewPhotoPath}";
+
             return resultModel;
         }
 
@@ -109,7 +113,7 @@ namespace Horizontal.Mapping
                 Tags = String.Join(", ", articleTagRepository.GetTagsByArticle(domainModel).Select(x => x.Name) ?? Enumerable.Empty<string>()),
                 FilePath = domainModel.FilePath,
                 PreviewPhotoPath = domainModel.PreviewPhotoPath,
-                Published = domainModel.Created.ToString("d. M. yyyy"),                
+                Published = domainModel.Created.ToString("d. M. yyyy"),
                 LastUpdated = domainModel.LastUpdated.ToString("d. M. yyyy"),
                 CustomUrl = customUrlRepository.CustomUrls?.Where(x => x.OriginalUrl == $"/Article/FullArticle?articleId={domainModel.Id}").FirstOrDefault()?.NewUrl ?? String.Empty,
                 GalleryUrl = domainModel.GalleryUrl,
