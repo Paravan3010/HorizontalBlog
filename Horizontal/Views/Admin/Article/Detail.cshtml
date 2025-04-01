@@ -84,6 +84,10 @@
             @Html.DropDownListFor(m => m.NextArticleId, new SelectList(Model?.AllArticles, "Id", "Title"), "Nevybráno", new { @class = "form-select" })
         </div>
         <div class="form-group">
+            <label for="Order">Obecné pořadí (použito pro řazení v levém navigačním panelu)</label>
+            <input name="Order" class="form-control" value="@Model.Order" />
+        </div>
+        <div class="form-group">
             <input name="IsInFeed" class="form-check-input" type="checkbox" value="@(Model.IsInFeed ? "true" : "false")" @(Model.IsInFeed ? "checked" : "") />
             <label for="IsInFeed" class="form-check-label">Ve feedu</label>
         </div>
