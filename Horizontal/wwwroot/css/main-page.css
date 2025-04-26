@@ -6,9 +6,9 @@ body {
     -ms-overflow-style: none; /* IE and Edge */
 }
 
-    body::-webkit-scrollbar { /* Chrome, Safari and Opera */
-        display: none;
-    }
+    /*body::-webkit-scrollbar {*/ /* Chrome, Safari and Opera */
+        /*display: none;
+    }*/
 
     body > main, body > header {
         width: 100vw;
