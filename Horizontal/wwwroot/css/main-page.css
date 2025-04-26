@@ -2,8 +2,10 @@
 /*========*/
 body {
     background-color: white;
-    overflow-y: scroll;
     -ms-overflow-style: none; /* IE and Edge */
+
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
     /*body::-webkit-scrollbar {*/ /* Chrome, Safari and Opera */
