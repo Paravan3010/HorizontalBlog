@@ -6,7 +6,7 @@
 }
 
     article.full-article a {
-        font-style: italic;
+        color: #f13544;
     }
 
     article.full-article p + h3, figure + h2, figure + h3, figure + h4, figure + h5, figure + h6 {
@@ -217,6 +217,10 @@ div.footnotes small {
     .tags em:hover, .full-article__gallery-link a:hover {
         color: #f13544;
         border-color: #f13544;
+    }
+
+    a:hover {
+        font-style: italic;
     }
 }
 
