@@ -89,7 +89,7 @@
     color: #808080;
 }
 
-.tags em, .full-article__gallery-link a {
+.tags em, .full-article__footing .full-article__gallery-link a {
     text-align: center;
     text-transform: uppercase;
     line-height: 1.5em;
